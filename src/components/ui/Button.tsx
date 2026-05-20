@@ -7,7 +7,7 @@ const styles: Record<Variant, string> = {
   primary:
     "bg-accent text-bg hover:brightness-95 border border-transparent",
   ghost:
-    "bg-transparent text-text border border-border hover:border-text/40 hover:bg-white/[0.03]",
+    "bg-transparent text-text border border-border hover:border-text/40 hover:bg-text/[0.04]",
 };
 
 export default function Button({

@@ -10,14 +10,14 @@
  */
 export const tokens = {
   color: {
-    bg: "#0A0A0B", // near-black, slightly warm
-    bgElevated: "#121214",
-    text: "#F5F5F0", // off-white, slightly warm
-    textMuted: "#8A8A85",
-    border: "rgba(255,255,255,0.08)",
-    accent: "#9FFFB0", // soft mint/lime
-    critical: "#FF5C5C",
-    advisory: "#FFC857",
+    bg: "#F6F6F2", // warm off-white page
+    bgElevated: "#FFFFFF", // elevated surfaces sit lighter than the page
+    text: "#17171A", // near-black
+    textMuted: "#6B6B64", // warm gray
+    border: "rgba(20,20,25,0.1)",
+    accent: "#047857", // emerald-700, readable on light
+    critical: "#DC2626",
+    advisory: "#B45309",
   },
   font: {
     display: "var(--font-display)",

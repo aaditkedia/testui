@@ -33,7 +33,7 @@ export default function ResearchList() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-baseline justify-between gap-6 border-b border-border py-6 transition-colors hover:bg-white/[0.02]"
+                className="group flex items-baseline justify-between gap-6 border-b border-border py-6 transition-colors hover:bg-text/[0.03]"
               >
                 <span className="max-w-2xl text-base text-text transition-colors group-hover:text-accent sm:text-lg">
                   {p.title}

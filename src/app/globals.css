@@ -7,14 +7,14 @@
  * Re-skin the whole template by editing these variables.
  */
 :root {
-  --bg: #0a0a0b;
-  --bg-elevated: #121214;
-  --text: #f5f5f0;
-  --text-muted: #8a8a85;
-  --border: rgba(255, 255, 255, 0.08);
-  --accent: #9fffb0;
-  --critical: #ff5c5c;
-  --advisory: #ffc857;
+  --bg: #f6f6f2; /* warm off-white */
+  --bg-elevated: #ffffff; /* elevated surfaces sit lighter than the page */
+  --text: #17171a; /* near-black */
+  --text-muted: #6b6b64; /* warm gray */
+  --border: rgba(20, 20, 25, 0.1);
+  --accent: #047857; /* emerald-700, readable on light */
+  --critical: #dc2626;
+  --advisory: #b45309;
 
   --font-display: var(--font-inter), system-ui, sans-serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
