@@ -26,6 +26,8 @@ const config: Config = {
       fontFamily: {
         display: "var(--font-display)",
         body: "var(--font-body)",
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
         tightest: "-0.02em",

@@ -3,17 +3,17 @@
  * Nothing in components hardcodes the brand name; everything reads from here.
  */
 export const siteConfig = {
-  name: "Pravāh",
-  tagline: "An AI lab for the power grid.",
+  name: "AI Valley",
+  tagline: "Where people building AI meet.",
   description:
-    "Pravāh is an AI lab building forecasting, control, and planning models that keep the electric grid stable as demand outpaces it.",
+    "AI Valley is the network for the people building AI: founders, researchers, and operators, connected city by city.",
   url: "https://example.com",
   email: "hello@example.com",
   nav: [
     { label: "Problem", href: "#problem" },
     { label: "Technology", href: "#technology" },
     { label: "Deployments", href: "#deployments" },
-    { label: "Research", href: "#research" },
+    { label: "Ambassadors", href: "/ambassador" },
   ],
   cta: { label: "Get In Touch", href: "/get-in-touch" },
   socials: [

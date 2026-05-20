@@ -14,11 +14,18 @@ export default function Footer() {
 
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
           <div className="flex gap-5">
-            {siteConfig.nav.map((item) => (
-              <a key={item.href} href={item.href} className="text-sm text-text-muted transition-colors hover:text-text">
-                {item.label}
-              </a>
-            ))}
+            {siteConfig.nav.map((item) => {
+              const cls = "text-sm text-text-muted transition-colors hover:text-text";
+              return item.href.startsWith("#") ? (
+                <a key={item.href} href={item.href} className={cls}>
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.href} href={item.href} className={cls}>
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
           <div className="flex gap-5">
             {siteConfig.socials.map((s) => (
