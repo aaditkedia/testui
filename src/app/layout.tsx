@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono, Bebas_Neue, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site.config";
 import SmoothScroll from "@/lib/smooth-scroll";
@@ -27,6 +27,22 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Concept D (Corn): bold condensed all-caps display.
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-condensed",
+  display: "swap",
+});
+
+// Concept F (HELIOS): thin elegant serif display.
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-serif-thin",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${siteConfig.name}: ${siteConfig.tagline}`,
@@ -44,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${bebas.variable} ${cormorant.variable}`}
       suppressHydrationWarning
     >
       <body>

@@ -1,8 +1,8 @@
 "use client";
 
-import MainConcept from "./main/MainConcept";
+import CornSite from "./cornsite/CornSite";
 
-// D = warm/cream "MAIN" scroll-driven WebGL concept.
+// D = Site A "Corn Revolutionized" (scroll-driven WebGL, DNA helix + particle fields).
 export default function ConceptD() {
-  return <MainConcept variant="warm" />;
+  return <CornSite />;
 }

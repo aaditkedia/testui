@@ -8,15 +8,17 @@ import ConceptB from "./ConceptB";
 import ConceptC from "./ConceptC";
 import ConceptD from "./ConceptD";
 import ConceptE from "./ConceptE";
+import ConceptF from "./ConceptF";
 
-type Id = "a" | "b" | "c" | "d" | "e";
+type Id = "a" | "b" | "c" | "d" | "e" | "f";
 
 const tabs: { id: Id; label: string; Comp: () => ReactElement }[] = [
   { id: "a", label: "Glass", Comp: ConceptA },
   { id: "b", label: "Cinematic", Comp: ConceptB },
   { id: "c", label: "Editorial", Comp: ConceptC },
-  { id: "d", label: "Warm 3D", Comp: ConceptD },
+  { id: "d", label: "Corn", Comp: ConceptD },
   { id: "e", label: "Dark 3D", Comp: ConceptE },
+  { id: "f", label: "Helios", Comp: ConceptF },
 ];
 
 export default function ConceptTabs() {
