@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { scaleLinear, line, area, curveMonotoneX } from "d3";
 import { viewport } from "@/lib/motion";
-import { tokens } from "@/config/theme.tokens";
+import { useThemeColors } from "@/lib/theme";
 
 /** Deterministic pseudo-random so SSR and client render identically. */
 function makeRng(seed: number) {
@@ -48,6 +48,7 @@ function buildData(): Pt[] {
 }
 
 export default function ForecastChart() {
+  const colors = useThemeColors();
   const data = useMemo(buildData, []);
 
   const { x, y, actualPath, predPath, bandPath, nowX } = useMemo(() => {
@@ -86,8 +87,8 @@ export default function ForecastChart() {
         {/* gridlines */}
         {yTicks.map((t) => (
           <g key={t}>
-            <line x1={M.left} x2={W - M.right} y1={y(t)} y2={y(t)} stroke={tokens.color.border} />
-            <text x={M.left - 8} y={y(t)} dy="0.32em" textAnchor="end" fontSize="10" fill={tokens.color.textMuted}>
+            <line x1={M.left} x2={W - M.right} y1={y(t)} y2={y(t)} stroke={colors.border} />
+            <text x={M.left - 8} y={y(t)} dy="0.32em" textAnchor="end" fontSize="10" fill={colors.textMuted}>
               {Math.round(t)}
             </text>
           </g>
@@ -96,7 +97,7 @@ export default function ForecastChart() {
         {/* forecast confidence band */}
         <motion.path
           d={bandPath}
-          fill={tokens.color.accent}
+          fill={colors.accent}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.12 }}
           viewport={viewport}
@@ -107,7 +108,7 @@ export default function ForecastChart() {
         <motion.path
           d={actualPath}
           fill="none"
-          stroke={tokens.color.text}
+          stroke={colors.text}
           strokeWidth={2}
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -120,7 +121,7 @@ export default function ForecastChart() {
         <motion.path
           d={predPath}
           fill="none"
-          stroke={tokens.color.accent}
+          stroke={colors.accent}
           strokeWidth={2}
           strokeDasharray="5 5"
           strokeLinecap="round"
@@ -136,7 +137,7 @@ export default function ForecastChart() {
           x2={nowX}
           y1={M.top}
           y2={H - M.bottom}
-          stroke={tokens.color.textMuted}
+          stroke={colors.textMuted}
           strokeDasharray="2 4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.6 }}
@@ -147,7 +148,7 @@ export default function ForecastChart() {
           x={nowX + 6}
           y={M.top + 4}
           fontSize="10"
-          fill={tokens.color.textMuted}
+          fill={colors.textMuted}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewport}
@@ -162,10 +163,10 @@ export default function ForecastChart() {
           <span className="h-px w-4 bg-text" /> Actual load
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-px w-4 border-t border-dashed" style={{ borderColor: tokens.color.accent }} /> Forecast
+          <span className="h-px w-4 border-t border-dashed" style={{ borderColor: colors.accent }} /> Forecast
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-4 rounded-sm" style={{ background: tokens.color.accent, opacity: 0.2 }} /> Confidence
+          <span className="h-2 w-4 rounded-sm" style={{ background: colors.accent, opacity: 0.2 }} /> Confidence
         </span>
       </figcaption>
     </figure>

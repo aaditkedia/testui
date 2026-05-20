@@ -41,8 +41,10 @@ Everything brand- and copy-related lives in `src/config/`. Components are dumb a
 
 1. **`src/config/site.config.ts`** — brand name, nav, CTA, email, socials.
 2. **`src/config/content.config.ts`** — every section's copy, in order (hero lines, cards, problem grid, technology blocks, deployment markers + stats, research papers, investors, final CTA).
-3. **`src/config/theme.tokens.ts`** + the `:root` block in **`src/app/globals.css`** — colors and fonts. These two mirror each other (Tailwind reads the CSS vars; D3 reads the tokens), so change both when re-skinning.
+3. **`src/config/theme.tokens.ts`** + the `:root` / `.dark` blocks in **`src/app/globals.css`** — colors and fonts, one block per theme. These mirror each other (Tailwind reads the CSS vars and flips on the `.dark` class; D3 viz read the JS `palettes` via `useThemeColors()`), so change both when re-skinning.
 4. Drop a new mark in **`src/app/icon.svg`**.
+
+**Light/dark toggle:** lives in the nav. Light is the default for first-time visitors; the choice persists to `localStorage` and an inline script in `layout.tsx` applies it before paint (no flash). Theme state comes from `src/lib/theme.tsx` (`ThemeProvider`, `useTheme`, `useThemeColors`).
 
 > The original pravah.com copy is here as a structural reference. Swap the verbatim wording, logo, and branding before deploying for a real product.
 

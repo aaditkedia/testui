@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { viewport } from "@/lib/motion";
-import { tokens } from "@/config/theme.tokens";
+import { useThemeColors } from "@/lib/theme";
 
 const W = 620;
 const H = 360;
@@ -32,6 +32,7 @@ function makeRng(seed: number) {
 }
 
 export default function AssetMapping() {
+  const colors = useThemeColors();
   // stylized "satellite" plots: a scatter of field/parcel rectangles
   const parcels = useMemo(() => {
     const rng = makeRng(11);
@@ -49,13 +50,13 @@ export default function AssetMapping() {
       <div className="overflow-hidden rounded-xl border border-border">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Asset detection over satellite imagery">
           {/* terrain backdrop */}
-          <rect width={W} height={H} fill={tokens.color.bgElevated} />
+          <rect width={W} height={H} fill={colors.bgElevated} />
           {parcels.map((p, i) => (
-            <rect key={i} x={p.x} y={p.y} width={p.w} height={p.h} fill={tokens.color.text} opacity={p.o} rx={2} />
+            <rect key={i} x={p.x} y={p.y} width={p.w} height={p.h} fill={colors.text} opacity={p.o} rx={2} />
           ))}
           {/* roads */}
-          <line x1={0} y1={H * 0.5} x2={W} y2={H * 0.42} stroke={tokens.color.text} strokeOpacity={0.1} strokeWidth={6} />
-          <line x1={W * 0.4} y1={0} x2={W * 0.46} y2={H} stroke={tokens.color.text} strokeOpacity={0.1} strokeWidth={5} />
+          <line x1={0} y1={H * 0.5} x2={W} y2={H * 0.42} stroke={colors.text} strokeOpacity={0.1} strokeWidth={6} />
+          <line x1={W * 0.4} y1={0} x2={W * 0.46} y2={H} stroke={colors.text} strokeOpacity={0.1} strokeWidth={5} />
 
           {/* scanning sweep */}
           <motion.rect
@@ -63,7 +64,7 @@ export default function AssetMapping() {
             y={0}
             width={3}
             height={H}
-            fill={tokens.color.accent}
+            fill={colors.accent}
             opacity={0.5}
             initial={{ x: 0, opacity: 0 }}
             whileInView={{ x: W, opacity: [0, 0.5, 0] }}
@@ -73,7 +74,7 @@ export default function AssetMapping() {
 
           {/* detections */}
           {boxes.map((b, i) => {
-            const color = b.tone === "accent" ? tokens.color.accent : tokens.color.advisory;
+            const color = b.tone === "accent" ? colors.accent : colors.advisory;
             const c = 10; // corner bracket length
             return (
               <motion.g
@@ -101,7 +102,7 @@ export default function AssetMapping() {
                   />
                 ))}
                 <g transform={`translate(${b.x}, ${b.y - 8})`}>
-                  <rect x={0} y={-11} width={b.label.length * 6.4 + 34} height={14} rx={2} fill={tokens.color.bg} opacity={0.85} />
+                  <rect x={0} y={-11} width={b.label.length * 6.4 + 34} height={14} rx={2} fill={colors.bg} opacity={0.85} />
                   <text x={4} y={0} fontSize="9.5" fill={color} fontWeight={600}>
                     {b.label} {b.conf.toFixed(2)}
                   </text>

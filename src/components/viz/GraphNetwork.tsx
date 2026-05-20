@@ -10,7 +10,7 @@ import {
   type SimulationNodeDatum,
   type SimulationLinkDatum,
 } from "d3";
-import { tokens } from "@/config/theme.tokens";
+import { useThemeColors } from "@/lib/theme";
 
 type Status = "normal" | "advisory" | "critical";
 type Node = SimulationNodeDatum & { id: number; status: Status; x: number; y: number };
@@ -18,11 +18,6 @@ type Link = SimulationLinkDatum<Node> & { stressed: boolean };
 
 const W = 620;
 const H = 360;
-const STATUS_COLOR: Record<Status, string> = {
-  normal: tokens.color.accent,
-  advisory: tokens.color.advisory,
-  critical: tokens.color.critical,
-};
 
 function makeRng(seed: number) {
   let s = seed;
@@ -66,6 +61,12 @@ function buildGraph() {
 }
 
 export default function GraphNetwork() {
+  const colors = useThemeColors();
+  const STATUS_COLOR: Record<Status, string> = {
+    normal: colors.accent,
+    advisory: colors.advisory,
+    critical: colors.critical,
+  };
   const base = useMemo(buildGraph, []);
   const [nodes, setNodes] = useState<Node[]>([]);
   const [links, setLinks] = useState<Link[]>([]);
@@ -128,7 +129,7 @@ export default function GraphNetwork() {
               y1={s.y}
               x2={t.x}
               y2={t.y}
-              stroke={l.stressed ? tokens.color.critical : tokens.color.text}
+              stroke={l.stressed ? colors.critical : colors.text}
               strokeWidth={l.stressed ? 1.4 : 0.8}
               strokeOpacity={active ? (l.stressed ? 0.5 : 0.18) : 0.05}
               style={{ transition: "stroke-opacity 0.3s" }}
@@ -170,13 +171,13 @@ export default function GraphNetwork() {
 
       <figcaption className="mt-3 flex flex-wrap gap-4 text-xs text-text-muted">
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.accent }} /> Normal
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.accent }} /> Normal
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.advisory }} /> Advisory
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.advisory }} /> Advisory
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.critical }} /> Critical
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.critical }} /> Critical
         </span>
         <span className="ml-auto hidden sm:block">hover a node to trace its neighborhood</span>
       </figcaption>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { siteConfig } from "@/config/site.config";
 import Button from "./Button";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,15 +48,18 @@ export default function Nav() {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           <Button href={siteConfig.cta.href}>{siteConfig.cta.label}</Button>
         </div>
 
-        <button
-          aria-label="Toggle menu"
-          className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
-          onClick={() => setOpen((o) => !o)}
-        >
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            aria-label="Toggle menu"
+            className="relative z-50 flex h-10 w-10 items-center justify-center"
+            onClick={() => setOpen((o) => !o)}
+          >
           <span className="sr-only">Menu</span>
           <div className="flex flex-col gap-1.5">
             <span
@@ -66,7 +70,8 @@ export default function Nav() {
               className={`block h-px w-6 bg-text transition-transform duration-300 ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
             />
           </div>
-        </button>
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { geoNaturalEarth1, geoPath } from "d3";
 import { feature } from "topojson-client";
 import type { Feature, Geometry } from "geojson";
-import { tokens } from "@/config/theme.tokens";
+import { useThemeColors } from "@/lib/theme";
 import type { Marker } from "@/config/content.config";
 
 const W = 900;
@@ -12,6 +12,7 @@ const H = 460;
 const TOPO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function WorldMap({ markers }: { markers: Marker[] }) {
+  const colors = useThemeColors();
   const [geos, setGeos] = useState<Feature<Geometry>[] | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -50,15 +51,15 @@ export default function WorldMap({ markers }: { markers: Marker[] }) {
           <path
             key={i}
             d={path(g) ?? ""}
-            fill={tokens.color.bgElevated}
-            stroke={tokens.color.border}
+            fill={colors.bgElevated}
+            stroke={colors.border}
             strokeWidth={0.5}
           />
         ))}
 
         {(geos || failed) &&
           projected.map((m, i) => {
-            const color = m.status === "live" ? tokens.color.accent : tokens.color.advisory;
+            const color = m.status === "live" ? colors.accent : colors.advisory;
             return (
               <g key={i} transform={`translate(${m.px},${m.py})`}>
                 <circle r={4} fill="none" stroke={color} strokeWidth={1}>
@@ -66,7 +67,7 @@ export default function WorldMap({ markers }: { markers: Marker[] }) {
                   <animate attributeName="stroke-opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite" />
                 </circle>
                 <circle r={3.5} fill={color} />
-                <text x={8} y={4} fontSize="11" fill={tokens.color.text} fontWeight={500}>
+                <text x={8} y={4} fontSize="11" fill={colors.text} fontWeight={500}>
                   {m.name}
                 </text>
               </g>

@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { hierarchy, tree, linkHorizontal, HierarchyPointNode } from "d3";
 import { viewport } from "@/lib/motion";
-import { tokens } from "@/config/theme.tokens";
+import { useThemeColors } from "@/lib/theme";
 
 type Outcome = "safe" | "risk" | "failure";
 type Datum = { name: string; outcome?: Outcome; children?: Datum[] };
@@ -40,13 +40,13 @@ const data: Datum = {
   ],
 };
 
-const OUTCOME_COLOR: Record<Outcome, string> = {
-  safe: tokens.color.accent,
-  risk: tokens.color.advisory,
-  failure: tokens.color.critical,
-};
-
 export default function RLTree() {
+  const colors = useThemeColors();
+  const OUTCOME_COLOR: Record<Outcome, string> = {
+    safe: colors.accent,
+    risk: colors.advisory,
+    failure: colors.critical,
+  };
   const { nodes, links, maxDepth } = useMemo(() => {
     const root = hierarchy<Datum>(data);
     const layout = tree<Datum>().size([H - M.top - M.bottom, W - M.left - M.right]);
@@ -66,7 +66,7 @@ export default function RLTree() {
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Reinforcement-learning rollout tree">
         {links.map((l, i) => {
           const isFinal = l.target.depth === maxDepth;
-          const color = isFinal && l.target.data.outcome ? OUTCOME_COLOR[l.target.data.outcome] : tokens.color.text;
+          const color = isFinal && l.target.data.outcome ? OUTCOME_COLOR[l.target.data.outcome] : colors.text;
           return (
             <motion.path
               key={i}
@@ -85,7 +85,7 @@ export default function RLTree() {
 
         {nodes.map((n, i) => {
           const outcome = n.data.outcome;
-          const color = outcome ? OUTCOME_COLOR[outcome] : tokens.color.text;
+          const color = outcome ? OUTCOME_COLOR[outcome] : colors.text;
           const r = n.depth === 0 ? 5 : outcome ? 4 : 3;
           return (
             <motion.g
@@ -98,12 +98,12 @@ export default function RLTree() {
             >
               <circle r={r} fill={color} fillOpacity={outcome ? 1 : n.depth === 0 ? 1 : 0.5} />
               {n.data.name && n.depth > 0 && n.depth < maxDepth && (
-                <text x={8} y={3} fontSize="9.5" fill={tokens.color.textMuted}>
+                <text x={8} y={3} fontSize="9.5" fill={colors.textMuted}>
                   {n.data.name}
                 </text>
               )}
               {n.depth === 0 && (
-                <text x={-10} y={3} textAnchor="end" fontSize="10" fill={tokens.color.text} fontWeight={600}>
+                <text x={-10} y={3} textAnchor="end" fontSize="10" fill={colors.text} fontWeight={600}>
                   now
                 </text>
               )}
@@ -114,13 +114,13 @@ export default function RLTree() {
 
       <figcaption className="mt-3 flex flex-wrap gap-4 text-xs text-text-muted">
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.accent }} /> Safe
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.accent }} /> Safe
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.advisory }} /> At risk
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.advisory }} /> At risk
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full" style={{ background: tokens.color.critical }} /> Failure
+          <span className="h-2 w-2 rounded-full" style={{ background: colors.critical }} /> Failure
         </span>
       </figcaption>
     </figure>
