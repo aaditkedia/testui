@@ -55,7 +55,7 @@ function DNAHelix({ progress }: { progress: Ref }) {
   });
 
   const tubeMat = (
-    <meshStandardMaterial color={AMBER} emissive={AMBER_EDGE} emissiveIntensity={2.6} metalness={0.3} roughness={0.4} toneMapped={false} />
+    <meshStandardMaterial color={AMBER} emissive={AMBER_EDGE} emissiveIntensity={1.3} metalness={0.3} roughness={0.4} toneMapped={false} />
   );
 
   return (
@@ -66,7 +66,7 @@ function DNAHelix({ progress }: { progress: Ref }) {
       </mesh>
       <mesh>
         <tubeGeometry args={[c2, 240, 0.04, 8, false]} />
-        <meshStandardMaterial color={AMBER} emissive={AMBER_EDGE} emissiveIntensity={2.6} metalness={0.3} roughness={0.4} toneMapped={false} />
+        <meshStandardMaterial color={AMBER} emissive={AMBER_EDGE} emissiveIntensity={1.3} metalness={0.3} roughness={0.4} toneMapped={false} />
       </mesh>
       <lineSegments>
         <bufferGeometry>
@@ -78,7 +78,7 @@ function DNAHelix({ progress }: { progress: Ref }) {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[embers, 3]} />
         </bufferGeometry>
-        <pointsMaterial color={AMBER} size={0.06} transparent opacity={0.85} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+        <pointsMaterial color={AMBER} size={0.06} transparent opacity={0.55} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </points>
       {/* radar scope on the right */}
       <mesh position={[2.6, 0, -1]} ref={sweep}>
@@ -165,18 +165,18 @@ export default function CornScene({ progress }: { progress: Ref }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5.5], fov: 38 }}
-      dpr={[1, 1.8]}
+      dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true }}
       style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     >
       <ambientLight intensity={0.4} />
-      <pointLight position={[0, 0, 3]} intensity={6} color={AMBER} distance={12} />
+      <pointLight position={[0, 0, 3]} intensity={3.5} color={AMBER} distance={12} />
       <pointLight position={[3, 2, 2]} intensity={2} color="#ffd9a0" />
       <DNAHelix progress={progress} />
       <Scatter progress={progress} />
       <FieldMap progress={progress} />
       <EffectComposer>
-        <Bloom intensity={1.5} luminanceThreshold={0.5} luminanceSmoothing={0.3} mipmapBlur />
+        <Bloom intensity={0.6} luminanceThreshold={0.62} luminanceSmoothing={0.3} mipmapBlur />
         <Vignette eskil={false} offset={0.3} darkness={0.75} />
       </EffectComposer>
     </Canvas>

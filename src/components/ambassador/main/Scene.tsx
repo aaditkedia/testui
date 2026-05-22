@@ -43,7 +43,7 @@ function HeroOrb({ progress, index, theme }: ActProps) {
   useFrame((state) => {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
-    g.current.scale.setScalar(v * 1.6);
+    g.current.scale.setScalar(v * 1.15);
     g.current.visible = v > 0.002;
     g.current.position.y = Math.sin(state.clock.elapsedTime * 0.4) * 0.15;
     g.current.rotation.y += 0.0015;
@@ -51,7 +51,7 @@ function HeroOrb({ progress, index, theme }: ActProps) {
   return (
     <group ref={g}>
       <mesh>
-        <sphereGeometry args={[1, 64, 64]} />
+        <sphereGeometry args={[1, 40, 40]} />
         <MeshTransmissionMaterial
           thickness={1.2}
           roughness={0.2}
@@ -59,8 +59,8 @@ function HeroOrb({ progress, index, theme }: ActProps) {
           ior={1.3}
           chromaticAberration={theme.fringe}
           backside
-          samples={4}
-          resolution={256}
+          samples={2}
+          resolution={128}
         />
       </mesh>
     </group>
@@ -73,7 +73,7 @@ function GlassCube({ progress, index, theme }: ActProps) {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
     const l = localT(progress.current, index);
-    g.current.scale.setScalar(v * 1.5);
+    g.current.scale.setScalar(v * 1.05);
     g.current.visible = v > 0.002;
     g.current.rotation.y = l * Math.PI * 2;
     g.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
@@ -92,8 +92,8 @@ function GlassCube({ progress, index, theme }: ActProps) {
           distortionScale={0.4}
           temporalDistortion={0.1}
           backside
-          samples={4}
-          resolution={256}
+          samples={2}
+          resolution={128}
         />
       </RoundedBox>
     </group>
@@ -106,7 +106,7 @@ function GlassSphere({ progress, index, theme }: ActProps) {
   useFrame((state) => {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
-    g.current.scale.setScalar(v * 1.5);
+    g.current.scale.setScalar(v * 1.05);
     g.current.visible = v > 0.002;
     g.current.rotation.y += 0.004;
     if (core.current) core.current.rotation.x = state.clock.elapsedTime * 0.6;
@@ -114,7 +114,7 @@ function GlassSphere({ progress, index, theme }: ActProps) {
   return (
     <group ref={g}>
       <mesh>
-        <sphereGeometry args={[1.1, 64, 64]} />
+        <sphereGeometry args={[1.1, 40, 40]} />
         <MeshTransmissionMaterial
           thickness={1.1}
           roughness={0.1}
@@ -122,8 +122,8 @@ function GlassSphere({ progress, index, theme }: ActProps) {
           ior={1.45}
           chromaticAberration={theme.fringe}
           backside
-          samples={4}
-          resolution={256}
+          samples={2}
+          resolution={128}
         />
       </mesh>
       <mesh ref={core} scale={0.42}>
@@ -139,7 +139,7 @@ function ChromeRings({ progress, index, theme }: ActProps) {
   useFrame((_, dt) => {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
-    g.current.scale.setScalar(v * 1.5);
+    g.current.scale.setScalar(v * 1.05);
     g.current.visible = v > 0.002;
     g.current.children.forEach((ring, i) => {
       ring.rotation.x += dt * (0.2 + i * 0.14);
@@ -178,7 +178,7 @@ function IconField({ progress, index, theme }: ActProps) {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
     const l = localT(progress.current, index);
-    g.current.scale.setScalar(v);
+    g.current.scale.setScalar(v * 0.72);
     g.current.visible = v > 0.002;
     g.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.15) * 0.3;
     g.current.position.z = lerp(-1.5, 1.2, l);
@@ -216,7 +216,7 @@ function ChromeKnot({ progress, index, theme }: ActProps) {
     if (!g.current) return;
     const v = visibleT(progress.current, index);
     const l = localT(progress.current, index);
-    g.current.scale.setScalar(v * 1.3);
+    g.current.scale.setScalar(v * 0.92);
     g.current.visible = v > 0.002;
     g.current.rotation.y = state.clock.elapsedTime * 0.4;
     if (pts.current) {
@@ -263,7 +263,7 @@ function Lights({ theme }: { theme: MainTheme }) {
     <>
       <ambientLight intensity={warm ? 0.5 : 0.35} />
       <directionalLight position={[3, 4, 2]} intensity={warm ? 1.1 : 0.9} color={warm ? "#ffe3b0" : "#cfe6ff"} />
-      <Environment resolution={256}>
+      <Environment resolution={128}>
         <Lightformer form="circle" intensity={warm ? 3 : 2} color={warm ? "#F2C98C" : "#bfe2ff"} position={[0, 2, 4]} scale={6} />
         <Lightformer form="rect" intensity={warm ? 1.2 : 1.4} color={warm ? "#C4733A" : "#6aa8d8"} position={[-4, 1, 2]} scale={5} />
         <Lightformer form="rect" intensity={1} color="#ffffff" position={[4, -1, 3]} scale={4} />
@@ -276,7 +276,7 @@ export default function Scene({ progress, theme }: { progress: ProgressRef; them
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 35 }}
-      dpr={[1, 1.8]}
+      dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true }}
       style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }}
     >

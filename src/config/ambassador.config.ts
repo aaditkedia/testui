@@ -26,7 +26,7 @@ export const ambassador = {
       cta: "Apply",
     },
     c: {
-      eyebrow: "01 — Introduction",
+      eyebrow: "01 / Introduction",
       title: "Ambassadors.",
       sub: "We are building the largest network of AI builders on earth. Ambassadors lead it, one city at a time.",
       cta: "Apply",

@@ -6,7 +6,7 @@ import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { clamp01 } from "../webgl/helpers";
 
-const N = 5000;
+const N = 3200;
 type Ref = MutableRefObject<number>;
 
 function starfield() {
@@ -143,7 +143,7 @@ export default function HeliosScene({ progress }: { progress: Ref }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 45 }}
-      dpr={[1, 1.8]}
+      dpr={[1, 1.5]}
       gl={{ alpha: false, antialias: true }}
       onCreated={({ gl }) => gl.setClearColor("#000000")}
       style={{ position: "fixed", inset: 0, zIndex: 0 }}

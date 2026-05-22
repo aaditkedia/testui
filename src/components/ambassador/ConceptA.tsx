@@ -152,7 +152,7 @@ export default function ConceptA() {
         </div>
       </section>
 
-      {/* Overview — glass cards */}
+      {/* Overview: glass cards */}
       <section className="relative mx-auto max-w-[1200px] px-6 py-28 sm:px-10">
         <p className="font-mono text-xs uppercase tracking-[0.25em]" style={{ color: ACCENT }}>The network</p>
         <h2 className="mt-5 max-w-2xl text-[clamp(2rem,4.5vw,3.4rem)] font-light leading-tight tracking-tight">

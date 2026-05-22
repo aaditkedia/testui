@@ -114,9 +114,9 @@ export default function ConceptC() {
         </div>
       </section>
 
-      {/* Overview — numbered manifest */}
+      {/* Overview: numbered manifest */}
       <section className="mx-auto max-w-[1200px] px-6 sm:px-10">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#6E6E68]">02 — By the numbers</p>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#6E6E68]">02 / By the numbers</p>
         <div className="mt-6 border-t border-[#0A0A0B]/12">
           {a.stats.map((s, i) => (
             <motion.div
@@ -128,7 +128,7 @@ export default function ConceptC() {
               className="grid items-center gap-4 border-b border-[#0A0A0B]/12 py-7 sm:grid-cols-[120px_1fr_1fr]"
             >
               <div className="font-mono text-xs uppercase tracking-widest text-[#6E6E68]">
-                {String(i + 1).padStart(2, "0")} — {s.label}
+                {String(i + 1).padStart(2, "0")} / {s.label}
               </div>
               <CountUp value={s.value} className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-none tracking-tight" />
               <p className="text-sm text-[#6E6E68] sm:text-right sm:text-base">{s.detail}</p>
@@ -150,10 +150,10 @@ export default function ConceptC() {
         </div>
       </section>
 
-      {/* Become an ambassador — color block */}
+      {/* Become an ambassador: color block */}
       <section className="mt-28 flex min-h-screen flex-col justify-center px-6 py-24 text-white sm:px-10" style={{ background: ACCENT }}>
         <div className="mx-auto w-full max-w-[1200px]">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">03 — The role</p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">03 / The role</p>
           <h2 className="mt-6 text-[clamp(4rem,18vw,16rem)] font-bold leading-[0.82] tracking-[-0.04em]">Lead.</h2>
           <p className="mt-8 max-w-[60ch] text-lg leading-relaxed text-white/90">
             Ambassadors run AI Valley in their city. You set the tone, host the room, and decide who gets in. We hand you the
@@ -162,7 +162,7 @@ export default function ConceptC() {
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-white/90">
             {a.commitment.map((c, i) => (
               <span key={c}>
-                {String(i + 1).padStart(2, "0")} — {c}
+                {String(i + 1).padStart(2, "0")} / {c}
               </span>
             ))}
           </div>
@@ -172,9 +172,9 @@ export default function ConceptC() {
         </div>
       </section>
 
-      {/* Perks — type-only compositions */}
+      {/* Perks: type-only compositions */}
       <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#6E6E68]">04 — What you get</p>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#6E6E68]">04 / What you get</p>
         <div className="mt-10 divide-y divide-[#0A0A0B]/12">
           {a.perks.map((p, i) => (
             <motion.div
