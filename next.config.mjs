@@ -14,6 +14,11 @@ const nextConfig = {
   images: {
     unoptimized: true, // no image optimizer on static hosting
   },
+  env: {
+    // Exposed to the client so plain <img> tags in /public resolve under the
+    // GitHub Pages base path in production (see lib/asset.ts).
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repo}` : "",
+  },
 };
 
 export default nextConfig;
