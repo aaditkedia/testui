@@ -9,8 +9,10 @@ import ConceptC from "./ConceptC";
 import ConceptD from "./ConceptD";
 import ConceptE from "./ConceptE";
 import ConceptF from "./ConceptF";
+import ConceptG from "./ConceptG";
+import ConceptH from "./ConceptH";
 
-type Id = "a" | "b" | "c" | "d" | "e" | "f";
+type Id = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
 
 const tabs: { id: Id; label: string; Comp: () => ReactElement }[] = [
   { id: "a", label: "Glass", Comp: ConceptA },
@@ -19,6 +21,8 @@ const tabs: { id: Id; label: string; Comp: () => ReactElement }[] = [
   { id: "d", label: "Corn", Comp: ConceptD },
   { id: "e", label: "Dark 3D", Comp: ConceptE },
   { id: "f", label: "Helios", Comp: ConceptF },
+  { id: "g", label: "NGPES", Comp: ConceptG },
+  { id: "h", label: "Berco", Comp: ConceptH },
 ];
 
 export default function ConceptTabs() {

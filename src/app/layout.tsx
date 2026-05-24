@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, JetBrains_Mono, Bebas_Neue, Cormorant_Garamond } from "next/font/google";
+import { Inter, Inter_Tight, Fraunces, JetBrains_Mono, Bebas_Neue, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site.config";
 import SmoothScroll from "@/lib/smooth-scroll";
@@ -10,6 +10,14 @@ import Nav from "@/components/ui/Nav";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Concepts G (NGPES) + H (Berco): modern humanist sans with tight letterforms.
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -60,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${bebas.variable} ${cormorant.variable}`}
+      className={`${inter.variable} ${interTight.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${bebas.variable} ${cormorant.variable}`}
       suppressHydrationWarning
     >
       <body>

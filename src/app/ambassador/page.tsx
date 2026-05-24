@@ -4,7 +4,7 @@ import ConceptTabs from "@/components/ambassador/ConceptTabs";
 export const metadata: Metadata = {
   title: "Ambassador Program",
   description:
-    "Three design concepts for the AI Valley Ambassador Program. Switch between Glass, Cinematic, and Editorial directions with the A / B / C tabs.",
+    "Design concepts and full landing-page rebuilds. Switch between directions with the A–H tabs.",
 };
 
 export default function AmbassadorPage() {
