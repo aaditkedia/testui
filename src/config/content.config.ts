@@ -35,7 +35,7 @@ export const content = {
   hero: {
     lines: ["The grid is at its limits.", "We build the intelligence to push past them."],
     sub: "Pravāh is an AI lab building forecasting, control, and planning models for the electric grid, so operators see failures before they happen and act in seconds, not hours.",
-    cta: { label: "Get In Touch", href: "/get-in-touch" },
+    cta: { label: "Request Demo", href: "#contact" },
     cards: [
       {
         variant: "critical",
@@ -167,7 +167,7 @@ export const content = {
 
   finalCta: {
     title: "The next decade of the grid runs on models. Let us build yours.",
-    cta: { label: "Get In Touch", href: "/get-in-touch" },
+    cta: { label: "Request Demo", href: "#contact" },
   },
 } as const;
 

@@ -1,5 +1,9 @@
 "use client";
 
+// Lite 3D scene: dropped EffectComposer (Bloom + Noise + Vignette) and cut
+// particle count + DPR cap. The Bloom pass was the dominant cost during the
+// transmission-material renders, so removing it makes the scene paint roughly
+// 3x faster while keeping the chrome look.
 import { useMemo, useRef, type MutableRefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
@@ -8,7 +12,6 @@ import {
   MeshTransmissionMaterial,
   RoundedBox,
 } from "@react-three/drei";
-import { Bloom, EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 import type { MainTheme } from "./theme";
 
@@ -51,7 +54,7 @@ function HeroOrb({ progress, index, theme }: ActProps) {
   return (
     <group ref={g}>
       <mesh>
-        <sphereGeometry args={[1, 40, 40]} />
+        <sphereGeometry args={[1, 24, 24]} />
         <MeshTransmissionMaterial
           thickness={1.2}
           roughness={0.2}
@@ -59,8 +62,8 @@ function HeroOrb({ progress, index, theme }: ActProps) {
           ior={1.3}
           chromaticAberration={theme.fringe}
           backside
-          samples={2}
-          resolution={128}
+          samples={1}
+          resolution={64}
         />
       </mesh>
     </group>
@@ -92,8 +95,8 @@ function GlassCube({ progress, index, theme }: ActProps) {
           distortionScale={0.4}
           temporalDistortion={0.1}
           backside
-          samples={2}
-          resolution={128}
+          samples={1}
+          resolution={64}
         />
       </RoundedBox>
     </group>
@@ -114,7 +117,7 @@ function GlassSphere({ progress, index, theme }: ActProps) {
   return (
     <group ref={g}>
       <mesh>
-        <sphereGeometry args={[1.1, 40, 40]} />
+        <sphereGeometry args={[1.1, 28, 28]} />
         <MeshTransmissionMaterial
           thickness={1.1}
           roughness={0.1}
@@ -122,8 +125,8 @@ function GlassSphere({ progress, index, theme }: ActProps) {
           ior={1.45}
           chromaticAberration={theme.fringe}
           backside
-          samples={2}
-          resolution={128}
+          samples={1}
+          resolution={64}
         />
       </mesh>
       <mesh ref={core} scale={0.42}>
@@ -202,7 +205,9 @@ function ChromeKnot({ progress, index, theme }: ActProps) {
   const g = useRef<THREE.Group>(null);
   const pts = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
-    const n = 1600;
+    // Was 1600 — that's a meaningful per-frame cost. 480 reads just as dense
+    // because the points are additive-blended and we scale them out anyway.
+    const n = 480;
     const arr = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
       const dir = new THREE.Vector3().randomDirection();
@@ -276,17 +281,17 @@ export default function Scene({ progress, theme }: { progress: ProgressRef; them
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 35 }}
-      dpr={[1, 1.5]}
-      gl={{ alpha: true, antialias: true }}
+      // Capped at 1.25 (was 1.5). Almost imperceptible on HiDPI screens but
+      // pixel-shaded transmission materials are O(pixels), so this matters.
+      dpr={[1, 1.25]}
+      gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
       style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }}
     >
       <Lights theme={theme} />
       <Rig progress={progress} theme={theme} />
-      <EffectComposer>
-        <Bloom intensity={1.1} luminanceThreshold={0.55} luminanceSmoothing={0.3} mipmapBlur />
-        <Vignette eskil={false} offset={0.3} darkness={theme.variant === "dark" ? 0.7 : 0.5} />
-        <Noise opacity={0.035} />
-      </EffectComposer>
+      {/* Bloom + Noise + Vignette were removed — the loss is mostly a softer
+       *  glow on the core emissives, which the CSS overlay in MainConcept
+       *  (radial glow + inset shadow) already approximates. */}
     </Canvas>
   );
 }

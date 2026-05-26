@@ -15,6 +15,11 @@ export type RestaurantTemplateData = {
   id: string;
   name: string;
   shortName: string;
+  // Generic naming for the template gallery sidebar (so prospects see the
+  // *layout style*, not the original client). The site header still uses
+  // `shortName` so the demo content reads naturally inside the preview.
+  genericName?: string;
+  genericLabel?: string;
   category: string;
   source: {
     spec: string;
@@ -103,7 +108,9 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
     id: "westside-grill",
     name: "Westside Grill",
     shortName: "Westside",
-    category: "Modern steakhouse",
+    genericName: "Modern Steakhouse",
+    genericLabel: "Steakhouse",
+    category: "Restaurant / Hospitality",
     source: {
       spec: "westside-grill-spec.md",
       buildPlan: "WESTSIDE-GRILL-BUILD-PLAN.md",
@@ -186,7 +193,9 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
     id: "the-shelby",
     name: "The Shelby",
     shortName: "Shelby",
-    category: "Upscale neighborhood dining",
+    genericName: "Editorial Neighborhood Restaurant",
+    genericLabel: "Editorial Dining",
+    category: "Restaurant / Hospitality",
     source: {
       spec: "the-shelby-spec.md",
       buildPlan: "THE-SHELBY-BUILD-PLAN.md",
@@ -266,7 +275,9 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
     id: "lazeez-grill",
     name: "Lazeez Fresh Mediterranean Grill",
     shortName: "Lazeez",
-    category: "Fresh Mediterranean fast casual",
+    genericName: "Fast-Casual / Mediterranean",
+    genericLabel: "Fast Casual",
+    category: "Restaurant / Hospitality",
     source: {
       spec: "lazeez-grill-spec.md",
       buildPlan: "LAZEEZ-GRILL-BUILD-PLAN.md",
@@ -347,7 +358,9 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
     id: "stuffed-to-the-grills",
     name: "Stuffed to the Grills",
     shortName: "Stuffed",
-    category: "Homemade sandwich cafe",
+    genericName: "Cafe / Catering",
+    genericLabel: "Cafe",
+    category: "Restaurant / Hospitality",
     source: {
       spec: "stuffed-to-the-grills-spec.md",
       buildPlan: "STUFFED-TO-THE-GRILLS-BUILD-PLAN.md",
@@ -426,13 +439,16 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
   },
 ];
 
+// Generic, pitch-ready template names. The shipping product is a gallery of
+// reusable layouts, so each entry presents the *kind of business* it suits,
+// not the original client. Specs/build-plans still live in /docs for reference.
 export const templateEntries: TemplateEntry[] = [
   {
     id: "pravah",
-    name: "Pravah Grid Lab",
-    label: "Pravah",
-    category: "AI infrastructure",
-    summary: "Config-driven AI lab landing page with live D3 visualizations.",
+    name: "AI Lab / Infrastructure",
+    label: "AI Lab",
+    category: "Deep tech",
+    summary: "Config-driven landing page with live D3 data visualizations, alert cards, and a real world-map deployment view. Suits AI labs, infra products, and data tools.",
     status: "Existing",
     spec: "website-recreation-spec.md",
     buildPlan: "pravah-rebuild-plan.md",
@@ -440,66 +456,66 @@ export const templateEntries: TemplateEntry[] = [
   },
   {
     id: "glass",
-    name: "Glass Network Concept",
+    name: "Glass Community Program",
     label: "Glass",
-    category: "Community program",
-    summary: "Glassmorphism community landing-page concept with stats, values, perks, and application flow.",
+    category: "Community / Program",
+    summary: "Glassmorphism program landing page with stats, values, perks, and an application flow. Suits ambassador programs, fellowships, and cohort communities.",
     status: "Existing",
     kind: "glass",
   },
   {
     id: "cinematic",
-    name: "Cinematic Community Concept",
+    name: "Cinematic Photo Program",
     label: "Cinematic",
-    category: "Community program",
-    summary: "Photo-driven dark cinematic landing page with editorial event imagery and partner-program conversion.",
+    category: "Community / Program",
+    summary: "Photo-forward dark cinematic page with editorial event imagery and partner-program conversion. Suits creator collectives, events, and editorial brands.",
     status: "Existing",
     spec: "ambassador-concept-b-cinematic.md",
     kind: "cinematic",
   },
   {
     id: "editorial",
-    name: "Editorial Manifesto Concept",
+    name: "Editorial Manifesto",
     label: "Editorial",
-    category: "Community program",
-    summary: "Swiss-minimal editorial landing page with high-contrast type and a bold partner-program application block.",
+    category: "Community / Program",
+    summary: "Swiss-minimal editorial page with high-contrast type and a bold application block. Suits manifesto launches, magazines, and design-led programs.",
     status: "Existing",
     spec: "ambassador-concept-c-editorial.md",
     kind: "editorial",
   },
   {
     id: "corn",
-    name: "Corn Revolutionized",
-    label: "Corn",
-    category: "Agriculture WebGL",
-    summary: "Scroll-driven agricultural landing page with procedural corn, testing, and harvest scenes.",
+    name: "Agriculture / Field Tech",
+    label: "Field Tech",
+    category: "Agriculture",
+    summary: "Scroll-driven agricultural page with procedural scenes for growing, testing, and harvest. Suits ag-tech, biotech, and outdoor-equipment brands.",
     status: "Existing",
     kind: "corn",
   },
   {
     id: "dark-3d",
-    name: "Dark 3D Intelligence Concept",
+    name: "3D Intelligence Narrative",
     label: "Dark 3D",
-    category: "3D narrative",
-    summary: "Dark chrome WebGL narrative concept built around personal intelligence and scroll-driven scenes.",
+    category: "Story-led product",
+    summary: "Dark chrome WebGL narrative page with scroll-driven scenes. Suits launch trailers, story-led AI products, and concept reveals. Lite-mode by default for performance.",
     status: "Existing",
     kind: "dark-3d",
   },
   {
     id: "helios",
-    name: "HELIOS",
-    label: "Helios",
-    category: "3D particle system",
-    summary: "Full-screen WebGL particle landing page with galaxy, globe, terrain, and network-map states.",
+    name: "Particle System Landing",
+    label: "Particle",
+    category: "Story-led product",
+    summary: "Full-screen WebGL particle landing page that morphs through galaxy, globe, terrain, and network-map states. Suits energy, data-network, and frontier-tech brands.",
     status: "Existing",
     kind: "helios",
   },
   {
     id: "ngpes",
-    name: "NGPES",
-    label: "NGPES",
-    category: "Fintech",
-    summary: "Light-mode payments infrastructure site with product UI scenes.",
+    name: "Fintech / Payments SaaS",
+    label: "Fintech",
+    category: "Fintech / SaaS",
+    summary: "Light-mode payments infrastructure site with mock product UIs and procedural scenes. Suits fintech, B2B SaaS, and developer-platform products.",
     status: "Existing",
     spec: "ngpes-spec.md",
     buildPlan: "NGPES-BUILD-PLAN.md",
@@ -507,10 +523,10 @@ export const templateEntries: TemplateEntry[] = [
   },
   {
     id: "berco",
-    name: "Berco Inc",
-    label: "Berco",
-    category: "eCommerce holding company",
-    summary: "Dark eCommerce holding-company site with motion and brand cards.",
+    name: "Holding Company / Portfolio",
+    label: "Holding Co",
+    category: "Agency / Holding",
+    summary: "Dark holding-company site with bold-word headlines, scroll word-reveal, and procedural brand cards. Suits agencies, eCommerce holding companies, and portfolio sites.",
     status: "Existing",
     spec: "berco-spec.md",
     buildPlan: "BERCO-BUILD-PLAN.md",
@@ -518,8 +534,8 @@ export const templateEntries: TemplateEntry[] = [
   },
   ...restaurantTemplates.map((data) => ({
     id: data.id,
-    name: data.name,
-    label: data.shortName,
+    name: data.genericName ?? data.name,
+    label: data.genericLabel ?? data.shortName,
     category: data.category,
     summary: data.hero.subtitle,
     status: "New build" as const,

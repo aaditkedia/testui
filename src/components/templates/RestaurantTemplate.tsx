@@ -42,17 +42,62 @@ function TemplateButton({
   );
 }
 
+// Stock photography (Unsplash CDN, hotlink-stable). Swap to your own assets
+// in /public/images and the template keeps working — the photo URL is the
+// only line that has to change per visual.
+// Three featured-card photos per visual style. Hotlink-stable Unsplash URLs.
+const FEATURED_PHOTOS: Record<RestaurantVisual, [string, string, string]> = {
+  steakhouse: [
+    "https://images.unsplash.com/photo-1558030006-450675393462?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1559847844-d721426d6edc?w=900&q=70&auto=format&fit=crop",
+  ],
+  shelby: [
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1432139509613-5c4255815697?w=900&q=70&auto=format&fit=crop",
+  ],
+  sandwich: [
+    "https://images.unsplash.com/photo-1481070555726-e2fe8357725c?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=70&auto=format&fit=crop",
+  ],
+  mediterranean: [
+    "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=70&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=70&auto=format&fit=crop",
+  ],
+};
+
+function featuredPhoto(visual: RestaurantVisual, i: number) {
+  return FEATURED_PHOTOS[visual][i % 3];
+}
+
+const HERO_PHOTOS: Record<RestaurantVisual, string> = {
+  steakhouse:
+    "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=1100&q=70&auto=format&fit=crop",
+  shelby:
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1100&q=70&auto=format&fit=crop",
+  sandwich:
+    "https://images.unsplash.com/photo-1539252554935-80fdcd573a44?w=1100&q=70&auto=format&fit=crop",
+  mediterranean:
+    "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1100&q=70&auto=format&fit=crop",
+};
+
 function FoodVisual({ visual }: { visual: RestaurantVisual }) {
   if (visual === "steakhouse") {
     return (
-      <div className="relative h-full min-h-[360px] overflow-hidden rounded-[28px] bg-[#241814] p-5 text-[#FFF3E4] shadow-2xl">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(200,164,106,.32),transparent_28%),radial-gradient(circle_at_72%_55%,rgba(155,31,31,.42),transparent_36%),linear-gradient(145deg,#2B1712,#0F0908)]" />
-        <div className="absolute left-8 top-8 h-28 w-28 rounded-full border border-[#C8A46A]/50 bg-[#160C09] shadow-[0_0_0_18px_rgba(200,164,106,.08)]" />
-        <div className="absolute bottom-12 right-8 h-44 w-44 rounded-full bg-[#5D1713] shadow-[inset_0_0_0_18px_rgba(255,243,228,.05)]" />
-        <div className="absolute bottom-24 right-20 h-20 w-28 rotate-[-18deg] rounded-full bg-[#9B1F1F] shadow-xl" />
-        <div className="absolute bottom-16 left-9 w-48 rounded-2xl border border-[#C8A46A]/30 bg-black/20 p-4 backdrop-blur">
-          <p className="text-xs uppercase">Tonight</p>
-          <p className="mt-2 text-2xl font-semibold">Prime Rib Sunday</p>
+      <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] bg-[#241814] text-[#FFF3E4] shadow-2xl">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={HERO_PHOTOS.steakhouse} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(15,9,8,.78)_10%,rgba(91,15,15,.55)_70%,rgba(200,164,106,.35)_120%)]" />
+        <div className="absolute bottom-7 left-7 max-w-[70%] rounded-2xl border border-[#C8A46A]/40 bg-black/45 p-5 backdrop-blur-md">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8A46A]">Tonight</p>
+          <p className="mt-2 text-2xl font-semibold leading-tight">Prime Rib Sunday</p>
+          <p className="mt-1 text-xs leading-5 text-[#FFF3E4]/80">Reservation-first dining-room conversion.</p>
+        </div>
+        <div className="absolute right-7 top-7 rounded-full border border-[#C8A46A]/40 bg-black/35 px-4 py-2 text-[11px] font-semibold uppercase tracking-widest backdrop-blur">
+          Reserve
         </div>
       </div>
     );
@@ -60,21 +105,29 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
 
   if (visual === "shelby") {
     return (
-      <div className="relative grid h-full min-h-[360px] grid-cols-[1.05fr_.75fr] gap-4">
+      <div className="relative grid h-full min-h-[420px] grid-cols-[1.05fr_.75fr] gap-4">
         <div className="relative overflow-hidden rounded-[28px] bg-[#2A1D15]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_28%,rgba(184,111,60,.62),transparent_28%),linear-gradient(145deg,#12100e,#4b2a19_70%,#B86F3C)]" />
-          <div className="absolute bottom-8 left-8 right-8 rounded-3xl bg-[#F8F2E8]/92 p-5 text-[#191511]">
-            <p className="text-xs uppercase text-[#6F6254]">Seasonal feature</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={HERO_PHOTOS.shelby} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-[linear-gradient(170deg,rgba(18,16,14,.55)_0%,rgba(75,42,25,.35)_60%,rgba(184,111,60,.3)_100%)]" />
+          <div className="absolute bottom-7 left-7 right-7 rounded-3xl bg-[#F8F2E8]/96 p-5 text-[#191511]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#6F6254]">Seasonal feature</p>
             <p className="mt-2 text-2xl font-semibold">Brunch and dinner, framed editorially.</p>
           </div>
         </div>
         <div className="grid gap-4">
-          <div className="rounded-[24px] bg-[#EFE4D3] p-5">
-            <div className="h-full rounded-full bg-[radial-gradient(circle,#46664C_0_26%,#D9B78F_27%_42%,#EFE4D3_43%)]" />
+          <div className="overflow-hidden rounded-[24px] bg-[#EFE4D3]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=70&auto=format&fit=crop"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
-          <div className="rounded-[24px] bg-[#11100E] p-5 text-[#FFF7EC]">
-            <p className="text-sm uppercase text-[#D9B78F]">Reserve</p>
-            <p className="mt-4 text-3xl">Resy + Toast</p>
+          <div className="flex flex-col justify-center rounded-[24px] bg-[#11100E] p-5 text-[#FFF7EC]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9B78F]">Reserve</p>
+            <p className="mt-3 text-2xl font-semibold">Resy + Toast</p>
+            <p className="mt-1 text-xs text-[#FFF7EC]/70">Reservation and pickup paths live side by side.</p>
           </div>
         </div>
       </div>
@@ -83,33 +136,33 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
 
   if (visual === "sandwich") {
     return (
-      <div className="relative h-full min-h-[360px] overflow-hidden rounded-[28px] border-2 border-[#2A2018] bg-[#F2E2C3] p-6">
-        <div className="absolute -right-10 -top-8 h-36 w-36 rotate-12 rounded-[32px] bg-[#F2B84B]" />
-        <div className="absolute -bottom-10 -left-8 h-40 w-40 rounded-full bg-[#4B7F38]/80" />
-        <div className="relative mx-auto mt-10 h-44 max-w-sm rounded-[42px] bg-[#D6452F] shadow-xl">
-          <div className="absolute left-7 right-7 top-6 h-11 rounded-full bg-[#F7DDAE]" />
-          <div className="absolute left-10 right-10 top-20 h-7 rounded-full bg-[#4B7F38]" />
-          <div className="absolute left-8 right-8 top-28 h-10 rounded-full bg-[#FFF7EA]" />
-          <div className="absolute -left-4 top-16 rotate-[-2deg] rounded-xl bg-white px-4 py-2 text-sm font-bold text-[#D6452F] shadow">
-            Best Seller
-          </div>
+      <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] border-2 border-[#2A2018] bg-[#F2E2C3]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={HERO_PHOTOS.sandwich} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-[linear-gradient(165deg,rgba(242,184,75,.18)_0%,rgba(214,69,47,.12)_55%,rgba(75,127,56,.22)_100%)]" />
+        <div className="absolute -left-4 top-7 rotate-[-3deg] rounded-xl bg-white px-4 py-2 text-sm font-bold text-[#D6452F] shadow-lg">
+          Best Seller
         </div>
-        <div className="absolute bottom-7 right-7 max-w-[220px] rounded-2xl bg-white p-4 shadow-lg">
-          <p className="text-xs uppercase text-[#765F4A]">Catering</p>
-          <p className="mt-1 text-xl font-bold text-[#2A2018]">Trays, box lunches, and pickup.</p>
+        <div className="absolute bottom-7 right-7 max-w-[240px] rounded-2xl bg-white p-4 shadow-xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#765F4A]">Catering</p>
+          <p className="mt-1 text-lg font-bold leading-snug text-[#2A2018]">Trays, box lunches, and pickup.</p>
         </div>
       </div>
     );
   }
 
+  // mediterranean
   return (
-    <div className="relative h-full min-h-[360px] overflow-hidden rounded-[28px] bg-[#F4E5C6] p-6">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(224,167,34,.5),transparent_26%),radial-gradient(circle_at_76%_72%,rgba(199,66,47,.28),transparent_34%)]" />
-      <div className="absolute left-10 top-10 h-48 w-48 rounded-full bg-[#FFF8EC] shadow-[inset_0_0_0_18px_rgba(47,125,50,.12)]" />
-      <div className="absolute left-20 top-20 h-28 w-28 rounded-full bg-[conic-gradient(#2F7D32,#E0A722,#C7422F,#2F7D32)]" />
-      <div className="absolute bottom-10 right-10 w-64 rounded-3xl bg-white p-5 shadow-xl">
-        <p className="text-xs uppercase text-[#65705C]">Fresh favorite</p>
-        <p className="mt-2 text-2xl font-bold text-[#1C2418]">Shawarma bowls, falafel, hummus, baklava.</p>
+    <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] bg-[#F4E5C6]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={HERO_PHOTOS.mediterranean} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-[linear-gradient(165deg,rgba(255,248,236,.35)_0%,rgba(224,167,34,.22)_55%,rgba(47,125,50,.25)_100%)]" />
+      <div className="absolute bottom-7 right-7 max-w-[280px] rounded-3xl bg-white/95 p-5 shadow-xl backdrop-blur">
+        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#65705C]">Fresh favorite</p>
+        <p className="mt-2 text-xl font-bold leading-snug text-[#1C2418]">Bowls, wraps, hummus, baklava.</p>
+      </div>
+      <div className="absolute left-7 top-7 rounded-full bg-[#2F7D32] px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-white shadow">
+        Order Online
       </div>
     </div>
   );
@@ -198,13 +251,21 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
             </motion.p>
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {data.featured.map((item) => (
+            {data.featured.map((item, i) => (
               <motion.article
                 key={item.name}
                 {...reveal}
                 className="group overflow-hidden rounded-[26px] border border-[var(--rt-line)] bg-[var(--rt-bg)]"
               >
-                <div className="h-40 bg-[linear-gradient(135deg,var(--rt-accent),var(--rt-accent-3),var(--rt-accent-2))] transition-transform duration-500 group-hover:scale-[1.02]" />
+                <div className="relative h-44 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={featuredPhoto(data.hero.visual, i)}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,.35))]" />
+                </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-3">
                     <span className="rounded-full bg-[var(--rt-surface)] px-3 py-1 text-xs font-bold text-[var(--rt-accent)]">

@@ -11,8 +11,6 @@ export const siteConfig = {
   email: "hello@example.com",
   nav: [
     { label: "Templates", href: "/" },
-    { label: "Contact", href: "/get-in-touch" },
-    { label: "Team", href: "/our-team" },
   ],
   cta: { label: "Open Templates", href: "/" },
   socials: [

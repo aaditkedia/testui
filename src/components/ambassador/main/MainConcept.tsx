@@ -58,7 +58,9 @@ export default function MainConcept({ variant }: { variant: MainVariant }) {
     <div ref={ref} className="relative" style={{ color: theme.ink }}>
       {/* atmosphere */}
       <div className="fixed inset-0 z-0" style={{ background: theme.pageBg }} />
-      <div className="fixed inset-0 z-0" style={{ background: theme.glow, mixBlendMode: "screen", filter: "blur(20px)" }} />
+      {/* Was blur(20px) — extremely expensive on a fixed full-screen layer.
+       *  The radial-gradient is already soft so 4px is plenty visually. */}
+      <div className="fixed inset-0 z-0" style={{ background: theme.glow, mixBlendMode: "screen", filter: "blur(4px)" }} />
       <Scene progress={progress} theme={theme} />
       <div className="pointer-events-none fixed inset-0 z-[2] opacity-[0.06] mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
       <div className="pointer-events-none fixed inset-0 z-[2]" style={{ boxShadow: "inset 0 0 220px 40px rgba(0,0,0,0.35)" }} />

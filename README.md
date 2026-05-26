@@ -1,71 +1,63 @@
-# Template Lab — landing page and website template gallery
+# Template Lab — landing-page gallery
 
-A pixel-cloned, **reusable** Next.js template built from `pravah-rebuild-plan.md`. Dark, restrained, "expensive-feeling" lab site with **real interactive D3 data visualizations** (not images).
+A Next.js 15 static-export gallery of reusable landing-page templates. Pitch-ready: every entry on the sidebar is a layout I can re-skin for a freelance client.
 
-Built with Next.js 15 (App Router) + TypeScript, Tailwind, Framer Motion, D3 v7, and Lenis smooth scroll.
+See **[CONTEXT.md](./CONTEXT.md)** for the full repo guide. Quick reference below.
 
 ## Quick start
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build
-npm start          # serve the production build
+npm run dev    # http://localhost:3000
+npm run build  # static export → ./out
+npm start      # serve the production build
 ```
 
-## What is on the page
+## What is in the gallery
 
-A single composed landing page (`src/app/page.tsx`) plus `/get-in-touch` and `/our-team`:
+| Category | Templates |
+|---|---|
+| Restaurant / Hospitality | Modern Steakhouse, Editorial Neighborhood Restaurant, Fast-Casual / Mediterranean, Cafe / Catering |
+| Community / Program | Glass, Cinematic, Editorial |
+| Fintech / SaaS | Fintech / Payments SaaS |
+| Agency / Holding | Holding Company / Portfolio |
+| Experimental / 3D | Agriculture / Field Tech, 3D Intelligence Narrative, Particle System Landing |
+| AI / Infrastructure | AI Lab / Infrastructure (with live D3 visualizations) |
 
-- **Hero** with floating alert cards (the signature detail)
-- **Problem** 2x2 grid
-- **Technology**: 4 alternating blocks, each paired with a live viz
-- **Deployments**: real world map with pulsing markers + the 1000 / 102 / 82 stats
-- **Research** list, **investor** row, **final CTA**, footer
-
-### The visualizations (`src/components/viz/`)
-
-| Component | Tech | What it shows |
-|---|---|---|
-| `ForecastChart` | D3 scale/shape + Framer | Actual vs forecast load with an animated confidence band and a "now" marker |
-| `GraphNetwork` | D3 force | 40+ node grid graph, status-colored, pulsing stressed edges, hover-to-trace neighborhood |
-| `AssetMapping` | SVG + Framer | Stylized satellite tile with detection bounding boxes drawing in |
-| `RLTree` | D3 hierarchy/tree | Branching "possible grid futures" tree, leaves colored by outcome |
-| `WorldMap` | d3-geo + topojson | Natural-earth projection (topojson from CDN) with pulsing deployment markers |
-
-All viz use **deterministic** mock data (seeded), so SSR and client render identically. Each accepts data so consumers can wire real numbers later.
-
-## Reuse it in ~5 minutes
-
-Everything brand- and copy-related lives in `src/config/`. Components are dumb and read from config.
-
-1. **`src/config/site.config.ts`** — brand name, nav, CTA, email, socials.
-2. **`src/config/content.config.ts`** — every section's copy, in order (hero lines, cards, problem grid, technology blocks, deployment markers + stats, research papers, investors, final CTA).
-3. **`src/config/theme.tokens.ts`** + the `:root` / `.dark` blocks in **`src/app/globals.css`** — colors and fonts, one block per theme. These mirror each other (Tailwind reads the CSS vars and flips on the `.dark` class; D3 viz read the JS `palettes` via `useThemeColors()`), so change both when re-skinning.
-4. Drop a new mark in **`src/app/icon.svg`**.
-
-**Light/dark toggle:** lives in the nav. Light is the default for first-time visitors; the choice persists to `localStorage` and an inline script in `layout.tsx` applies it before paint (no flash). Theme state comes from `src/lib/theme.tsx` (`ThemeProvider`, `useTheme`, `useThemeColors`).
-
-> The original pravah.com copy is here as a structural reference. Swap the verbatim wording, logo, and branding before deploying for a real product.
+Each restaurant template is data-driven by `src/config/template-gallery.ts`. The others are bespoke components under `src/components/ambassador/`.
 
 ## Project structure
 
 ```
+CONTEXT.md          repo-level guide (read first)
+README.md           this file
+docs/
+  build-plans/      engineering plans per template
+  specs/            original spec sheets per template
 src/
-  app/            page.tsx (composition), layout, globals.css, get-in-touch, our-team, icon.svg
+  app/              page.tsx, layout, globals.css, icon.svg
   components/
-    sections/     Hero, ProblemGrid, Technology, VisionBlock, DeploymentMap, ResearchList, InvestorRow, FinalCTA, Footer
-    viz/          ForecastChart, GraphNetwork, AssetMapping, RLTree, WorldMap
-    ui/           Nav, FloatingCard, Button, Pill, Reveal
-  config/         site.config, content.config, theme.tokens
-  lib/            motion (shared Framer variants), smooth-scroll (Lenis provider)
+    templates/      TemplateBrowser, PravahTemplate, RestaurantTemplate
+    ambassador/     ConceptA/B/C and the bespoke sites (corn/helios/ngpes/berco/main)
+    sections/       Pravah-template sections
+    ui/             Nav, Button, ThemeToggle, etc.
+    viz/            D3 visualizations used by the Pravah template
+  config/           site.config, content.config, template-gallery, theme.tokens
+  lib/              motion variants, Lenis smooth scroll, theme provider
+public/             static images
 ```
 
-## Deploy
+## Re-skinning for a client
 
-Push to a Git repo and import into **Vercel**, or `npm run build` and host the output. No env vars required. The world map fetches its topojson from `cdn.jsdelivr.net` at runtime (already allowlisted in `next.config.mjs`).
+1. Pick the closest template from the sidebar.
+2. Edit `src/config/template-gallery.ts` (or `content.config.ts` / `site.config.ts` for the Pravah-style one) with the client's copy, theme tokens, and photos.
+3. `npm run build` and ship `./out` to any static host.
 
-## Notes / deviations from the plan
+Full walkthrough in **[CONTEXT.md](./CONTEXT.md)**.
 
-- The plan listed React Three Fiber for a 3D globe and asset plane. To keep the dependency tree light and the build reliable, both took the plan's own "cheap" recommendations: the deployment map is a real `d3-geo` 2D projection, and asset mapping is SVG. Swapping in R3F later is isolated to those two viz files.
-- Smooth scroll respects `prefers-reduced-motion` (Lenis is skipped and all animations are near-instant).
+## Notes
+
+- Output is `next export`-style static HTML. No env vars, no server runtime.
+- `next.config.mjs` is configured for GitHub Pages at `/testui`. Edit `repo` (or strip the basePath) for other hosts.
+- Smooth scroll respects `prefers-reduced-motion`.
+- The world map fetches its topojson from `cdn.jsdelivr.net` at runtime (already allowlisted).
