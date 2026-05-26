@@ -95,7 +95,7 @@ function Medal() {
           return <circle key={i} cx={60 + Math.cos(ang) * 47} cy={60 + Math.sin(ang) * 47} r="1" fill="#7a531a" opacity="0.5" />;
         })}
         <text x="60" y="67" textAnchor="middle" fontSize="22" fontWeight="700" fill="#5e3f12" fontFamily="serif">
-          AIV
+          NET
         </text>
       </svg>
     </div>
@@ -113,7 +113,7 @@ export default function ConceptB() {
         <PhotoBlock
           gradient="radial-gradient(120% 90% at 70% 20%,#13384a,#0a0a0b 70%)"
           src={`${IMG}/hero.jpg`}
-          alt="AI Valley summit stage at night"
+          alt="Network summit stage at night"
           kenburns
           className="absolute inset-0"
         />
@@ -140,7 +140,7 @@ export default function ConceptB() {
       {/* Overview: magazine spread */}
       <section className="mx-auto max-w-[1200px] px-6 py-28 sm:px-10">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-[120px]">
-          <PhotoBlock gradient={PHOTOS[0]} src={`${IMG}/demo-day.jpg`} alt="Founders presenting at an AI Valley demo day" label="AIV demo day" kenburns className="aspect-[4/5] w-full rounded-sm" />
+          <PhotoBlock gradient={PHOTOS[0]} src={`${IMG}/demo-day.jpg`} alt="Founders presenting at a demo day" label="Demo day" kenburns className="aspect-[4/5] w-full rounded-sm" />
           <div className="flex flex-col justify-center">
             <div className="grid grid-cols-2 gap-8">
               {a.stats.map((s) => (
@@ -151,7 +151,7 @@ export default function ConceptB() {
               ))}
             </div>
             <p className="mt-10 border-l-2 pl-5 font-serif text-xl italic leading-relaxed text-white/85" style={{ borderColor: ACCENT }}>
-              &ldquo;AI Valley is where the people building the future already are. Ambassadors bring that to your city.&rdquo;
+              &ldquo;This is where the people building the future already are. City partners bring that to your market.&rdquo;
             </p>
             <ul className="mt-10 space-y-3">
               {a.values.map((v) => (
@@ -167,13 +167,13 @@ export default function ConceptB() {
 
       {/* Become an ambassador: portrait moment */}
       <section className="relative flex min-h-screen items-center overflow-hidden">
-        <PhotoBlock gradient={PHOTOS[1]} src={`${IMG}/portrait.jpg`} alt="An AI Valley ambassador hosting a room" kenburns className="absolute inset-0" />
+        <PhotoBlock gradient={PHOTOS[1]} src={`${IMG}/portrait.jpg`} alt="A city partner hosting a room" kenburns className="absolute inset-0" />
         <div className="relative mx-auto w-full max-w-[1200px] px-6 sm:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/55">The role</p>
               <h2 className="mt-5 max-w-2xl font-serif text-[clamp(2.5rem,7vw,5.5rem)] font-light italic leading-[0.98]">
-                Lead AI Valley in your region.
+                Lead the network in your region.
               </h2>
               <div className="mt-8 flex flex-wrap gap-3 font-mono text-xs text-white/70">
                 {a.commitment.map((c) => (
@@ -230,7 +230,7 @@ export default function ConceptB() {
               </div>
             ))}
           </div>
-          <p className="mt-16 font-mono text-[11px] uppercase tracking-widest text-white/40">AI Valley Ambassador Program</p>
+          <p className="mt-16 font-mono text-[11px] uppercase tracking-widest text-white/40">City Partner Program</p>
         </div>
       </section>
     </div>

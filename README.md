@@ -1,4 +1,4 @@
-# AIvalleytemp1 — Pravāh rebuild template
+# Template Lab — landing page and website template gallery
 
 A pixel-cloned, **reusable** Next.js template built from `pravah-rebuild-plan.md`. Dark, restrained, "expensive-feeling" lab site with **real interactive D3 data visualizations** (not images).
 

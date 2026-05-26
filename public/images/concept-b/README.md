@@ -9,7 +9,7 @@ So generate **natural-color, slightly moody photos**; do not pre-tint them.
 
 | File | Aspect | Subject |
 |------|--------|---------|
-| `hero.jpg` | 16:9 (wide, ~2400×1350) | AI Valley summit stage at night, crowd silhouettes, dramatic stage light |
+| `hero.jpg` | 16:9 (wide, ~2400×1350) | Network summit stage at night, crowd silhouettes, dramatic stage light |
 | `demo-day.jpg` | 4:5 (portrait, ~1600×2000) | A founder presenting on stage at a demo day, laptop/slide glow |
 | `portrait.jpg` | 16:9 (wide) | An ambassador hosting a packed founder dinner / fireside, warm room |
 | `perk-1.jpg` | 16:9 (wide) | Two people shaking hands / a warm intro at a tech mixer |

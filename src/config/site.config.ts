@@ -3,19 +3,18 @@
  * Nothing in components hardcodes the brand name; everything reads from here.
  */
 export const siteConfig = {
-  name: "AI Valley",
-  tagline: "Where people building AI meet.",
+  name: "Template Lab",
+  tagline: "Reusable landing pages and website systems.",
   description:
-    "AI Valley is the network for the people building AI: founders, researchers, and operators, connected city by city.",
+    "A working gallery of reusable landing pages and website templates built from spec sheets and build plans.",
   url: "https://example.com",
   email: "hello@example.com",
   nav: [
-    { label: "Problem", href: "#problem" },
-    { label: "Technology", href: "#technology" },
-    { label: "Deployments", href: "#deployments" },
-    { label: "Ambassadors", href: "/ambassador" },
+    { label: "Templates", href: "/" },
+    { label: "Contact", href: "/get-in-touch" },
+    { label: "Team", href: "/our-team" },
   ],
-  cta: { label: "Get In Touch", href: "/get-in-touch" },
+  cta: { label: "Open Templates", href: "/" },
   socials: [
     { label: "X", href: "https://x.com" },
     { label: "LinkedIn", href: "https://linkedin.com" },

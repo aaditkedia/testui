@@ -40,7 +40,7 @@ export default function ConceptTabs() {
       <div className="fixed left-1/2 top-4 z-[60] -translate-x-1/2">
         <div
           role="tablist"
-          aria-label="Ambassador design concepts"
+          aria-label="Showcase design concepts"
           className="flex items-center gap-1 rounded-full border border-white/15 bg-black/55 p-1 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.7)] backdrop-blur-xl"
         >
           {tabs.map((t) => {
@@ -78,7 +78,7 @@ export default function ConceptTabs() {
         href="/"
         className="fixed left-4 top-5 z-[60] hidden font-mono text-[11px] uppercase tracking-widest text-white/50 mix-blend-difference transition-colors hover:text-white md:block"
       >
-        &#8592; AI Valley
+        &#8592; Template Lab
       </Link>
 
       <AnimatePresence mode="wait">

@@ -193,7 +193,7 @@ export default function ConceptA() {
         <div className={`${cardCls} relative mx-auto max-w-4xl overflow-hidden p-10 text-center sm:p-16`}>
           <p className="font-mono text-xs uppercase tracking-[0.25em]" style={{ color: ACCENT }}>The role</p>
           <h2 className="mx-auto mt-5 max-w-2xl text-[clamp(2.2rem,5.5vw,4rem)] font-light leading-[1.02] tracking-tight">
-            Lead AI Valley in your region.
+            Lead the network in your region.
           </h2>
           <p className="mx-auto mt-6 max-w-lg text-white/60">
             Run the network in your city: host the rooms, open the doors, and connect your community to the people shaping AI.
@@ -258,7 +258,7 @@ export default function ConceptA() {
           >
             Request access
           </a>
-          <p className="mt-16 font-mono text-[11px] uppercase tracking-widest text-white/35">AI Valley Ambassador Program</p>
+          <p className="mt-16 font-mono text-[11px] uppercase tracking-widest text-white/35">City Partner Program</p>
         </div>
       </section>
     </div>

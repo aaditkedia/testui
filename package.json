@@ -1,8 +1,8 @@
 {
-  "name": "aivalleytemp1",
+  "name": "ui-landing-pages",
   "version": "0.1.0",
   "private": true,
-  "description": "Pravah rebuild: a reusable, config-driven Next.js template with real D3 data visualizations.",
+  "description": "A reusable gallery of landing pages and website templates built from spec sheets and build plans.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

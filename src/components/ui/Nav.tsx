@@ -27,8 +27,8 @@ export default function Nav() {
     };
   }, [open]);
 
-  // The ambassador showcase has its own A/B/C chrome.
-  if (pathname?.startsWith("/ambassador")) return null;
+  // The template gallery and legacy showcase provide their own chrome.
+  if (pathname === "/" || pathname?.startsWith("/ambassador")) return null;
 
   return (
     <header

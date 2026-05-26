@@ -156,7 +156,7 @@ export default function ConceptC() {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">03 / The role</p>
           <h2 className="mt-6 text-[clamp(4rem,18vw,16rem)] font-bold leading-[0.82] tracking-[-0.04em]">Lead.</h2>
           <p className="mt-8 max-w-[60ch] text-lg leading-relaxed text-white/90">
-            Ambassadors run AI Valley in their city. You set the tone, host the room, and decide who gets in. We hand you the
+            City partners run the network in their city. You set the tone, host the room, and decide who gets in. We hand you the
             playbook, the budget, and the network. You bring the ambition.
           </p>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-white/90">
