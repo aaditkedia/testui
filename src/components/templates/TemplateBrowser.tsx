@@ -5,16 +5,28 @@ import { AnimatePresence, motion } from "framer-motion";
 import { templateEntries, type TemplateEntry } from "@/config/template-gallery";
 import PravahTemplate from "./PravahTemplate";
 import RestaurantTemplate from "./RestaurantTemplate";
+import ConceptA from "@/components/ambassador/ConceptA";
+import ConceptB from "@/components/ambassador/ConceptB";
+import ConceptC from "@/components/ambassador/ConceptC";
+import ConceptD from "@/components/ambassador/ConceptD";
+import ConceptE from "@/components/ambassador/ConceptE";
+import ConceptF from "@/components/ambassador/ConceptF";
 import NgpesSite from "@/components/ambassador/ngpessite/NgpesSite";
 import BercoSite from "@/components/ambassador/bercosite/BercoSite";
 
 function SourceLine({ template }: { template: TemplateEntry }) {
   const parts = [template.spec, template.buildPlan].filter(Boolean);
-  return <span>{parts.join(" + ")}</span>;
+  return <span>{parts.length ? parts.join(" + ") : "Existing concept component"}</span>;
 }
 
 function ActiveTemplate({ template }: { template: TemplateEntry }) {
   if (template.kind === "pravah") return <PravahTemplate />;
+  if (template.kind === "glass") return <ConceptA />;
+  if (template.kind === "cinematic") return <ConceptB />;
+  if (template.kind === "editorial") return <ConceptC />;
+  if (template.kind === "corn") return <ConceptD />;
+  if (template.kind === "dark-3d") return <ConceptE />;
+  if (template.kind === "helios") return <ConceptF />;
   if (template.kind === "ngpes") return <NgpesSite />;
   if (template.kind === "berco") return <BercoSite />;
   if (template.kind === "restaurant") return <RestaurantTemplate data={template.data} />;
@@ -22,7 +34,7 @@ function ActiveTemplate({ template }: { template: TemplateEntry }) {
 }
 
 export default function TemplateBrowser() {
-  const [activeId, setActiveId] = useState(templateEntries[3]?.id ?? templateEntries[0].id);
+  const [activeId, setActiveId] = useState("westside-grill");
   const active = useMemo(
     () => templateEntries.find((template) => template.id === activeId) ?? templateEntries[0],
     [activeId]

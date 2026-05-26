@@ -1,5 +1,16 @@
 export type RestaurantVisual = "mediterranean" | "steakhouse" | "sandwich" | "shelby";
 
+export type ExistingTemplateKind =
+  | "pravah"
+  | "glass"
+  | "cinematic"
+  | "editorial"
+  | "corn"
+  | "dark-3d"
+  | "helios"
+  | "ngpes"
+  | "berco";
+
 export type RestaurantTemplateData = {
   id: string;
   name: string;
@@ -64,7 +75,7 @@ export type RestaurantTemplateData = {
 
 export type TemplateEntry =
   | {
-      id: "pravah" | "ngpes" | "berco";
+      id: ExistingTemplateKind;
       name: string;
       label: string;
       category: string;
@@ -72,7 +83,7 @@ export type TemplateEntry =
       status: "Existing";
       spec?: string;
       buildPlan?: string;
-      kind: "pravah" | "ngpes" | "berco";
+      kind: ExistingTemplateKind;
     }
   | {
       id: string;
@@ -426,6 +437,62 @@ export const templateEntries: TemplateEntry[] = [
     spec: "website-recreation-spec.md",
     buildPlan: "pravah-rebuild-plan.md",
     kind: "pravah",
+  },
+  {
+    id: "glass",
+    name: "Glass Network Concept",
+    label: "Glass",
+    category: "Community program",
+    summary: "Glassmorphism community landing-page concept with stats, values, perks, and application flow.",
+    status: "Existing",
+    kind: "glass",
+  },
+  {
+    id: "cinematic",
+    name: "Cinematic Community Concept",
+    label: "Cinematic",
+    category: "Community program",
+    summary: "Photo-driven dark cinematic landing page with editorial event imagery and partner-program conversion.",
+    status: "Existing",
+    spec: "ambassador-concept-b-cinematic.md",
+    kind: "cinematic",
+  },
+  {
+    id: "editorial",
+    name: "Editorial Manifesto Concept",
+    label: "Editorial",
+    category: "Community program",
+    summary: "Swiss-minimal editorial landing page with high-contrast type and a bold partner-program application block.",
+    status: "Existing",
+    spec: "ambassador-concept-c-editorial.md",
+    kind: "editorial",
+  },
+  {
+    id: "corn",
+    name: "Corn Revolutionized",
+    label: "Corn",
+    category: "Agriculture WebGL",
+    summary: "Scroll-driven agricultural landing page with procedural corn, testing, and harvest scenes.",
+    status: "Existing",
+    kind: "corn",
+  },
+  {
+    id: "dark-3d",
+    name: "Dark 3D Intelligence Concept",
+    label: "Dark 3D",
+    category: "3D narrative",
+    summary: "Dark chrome WebGL narrative concept built around personal intelligence and scroll-driven scenes.",
+    status: "Existing",
+    kind: "dark-3d",
+  },
+  {
+    id: "helios",
+    name: "HELIOS",
+    label: "Helios",
+    category: "3D particle system",
+    summary: "Full-screen WebGL particle landing page with galaxy, globe, terrain, and network-map states.",
+    status: "Existing",
+    kind: "helios",
   },
   {
     id: "ngpes",
