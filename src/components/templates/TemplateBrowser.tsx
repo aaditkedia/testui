@@ -13,6 +13,9 @@ import MainConcept from "@/components/ambassador/main/MainConcept";
 import HeliosSite from "@/components/ambassador/heliossite/HeliosSite";
 import NgpesSite from "@/components/ambassador/ngpessite/NgpesSite";
 import BercoSite from "@/components/ambassador/bercosite/BercoSite";
+import CinematicSite from "@/components/ambassador/boilernet/cinematic/CinematicSite";
+import GlobeTrainSite from "@/components/ambassador/boilernet/globe/GlobeTrainSite";
+import DroneSite from "@/components/ambassador/boilernet/drone/DroneSite";
 
 function ActiveTemplate({ template }: { template: TemplateEntry }) {
   switch (template.kind) {
@@ -34,6 +37,12 @@ function ActiveTemplate({ template }: { template: TemplateEntry }) {
       return <NgpesSite />;
     case "berco":
       return <BercoSite />;
+    case "boiler-cinematic":
+      return <CinematicSite />;
+    case "boiler-globe":
+      return <GlobeTrainSite />;
+    case "boiler-drone":
+      return <DroneSite />;
     case "restaurant":
       return <RestaurantTemplate data={template.data} />;
   }
@@ -55,7 +64,14 @@ function categoryGroup(entry: TemplateEntry): string {
     return "Community / Program";
   if (entry.kind === "ngpes") return "Fintech / SaaS";
   if (entry.kind === "berco") return "Agency / Holding";
-  if (entry.kind === "corn" || entry.kind === "dark-3d" || entry.kind === "helios")
+  if (
+    entry.kind === "corn" ||
+    entry.kind === "dark-3d" ||
+    entry.kind === "helios" ||
+    entry.kind === "boiler-cinematic" ||
+    entry.kind === "boiler-globe" ||
+    entry.kind === "boiler-drone"
+  )
     return "Experimental / 3D";
   return "AI / Infrastructure";
 }

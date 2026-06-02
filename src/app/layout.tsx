@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Inter_Tight, Fraunces, JetBrains_Mono, Bebas_Neue, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import "./boilernet.css";
 import { siteConfig } from "@/config/site.config";
 import SmoothScroll from "@/lib/smooth-scroll";
 import { ThemeProvider } from "@/lib/theme";

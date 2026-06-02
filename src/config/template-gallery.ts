@@ -9,7 +9,10 @@ export type ExistingTemplateKind =
   | "dark-3d"
   | "helios"
   | "ngpes"
-  | "berco";
+  | "berco"
+  | "boiler-cinematic"
+  | "boiler-globe"
+  | "boiler-drone";
 
 export type RestaurantTemplateData = {
   id: string;
@@ -531,6 +534,33 @@ export const templateEntries: TemplateEntry[] = [
     spec: "berco-spec.md",
     buildPlan: "BERCO-BUILD-PLAN.md",
     kind: "berco",
+  },
+  {
+    id: "boiler-cinematic",
+    name: "Cinematic Portfolio Scene",
+    label: "Cinematic 3D",
+    category: "Experimental / 3D",
+    summary: "Full-screen R3F portfolio scene: a drifting particle nebula with clickable monoliths and a GSAP camera dolly into each project. Suits studios, creative portfolios, and launch reveals.",
+    status: "Existing",
+    kind: "boiler-cinematic",
+  },
+  {
+    id: "boiler-globe",
+    name: "Globe Hero + Scroll Train",
+    label: "Globe / Train",
+    category: "Experimental / 3D",
+    summary: "Marketing landing with a custom-shader night-Earth globe hero and a scroll-linked SVG train that rides a spline down the page. Suits networks, logistics, and place-based communities.",
+    status: "Existing",
+    kind: "boiler-globe",
+  },
+  {
+    id: "boiler-drone",
+    name: "Drone Chase Scene",
+    label: "Drone 3D",
+    category: "Experimental / 3D",
+    summary: "Cinematic R3F drone-chase flythrough with a moody nebula and head-on camera tracking. Suits hardware, robotics, and trailer-style product reveals.",
+    status: "Existing",
+    kind: "boiler-drone",
   },
   ...restaurantTemplates.map((data) => ({
     id: data.id,
