@@ -3,7 +3,7 @@
  * Nothing in components hardcodes the brand name; everything reads from here.
  */
 export const siteConfig = {
-  name: "Template Lab",
+  name: "Kediora Studio",
   tagline: "Reusable landing pages and website systems.",
   description:
     "A working gallery of reusable landing pages and website templates built from spec sheets and build plans.",

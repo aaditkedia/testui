@@ -1,4 +1,4 @@
-# Template Lab — landing-page gallery
+# Kediora Studio — landing-page gallery
 
 A Next.js 15 static-export gallery of reusable landing-page templates. Pitch-ready: every card in the live-preview showcase grid is a layout I can re-skin for a freelance client.
 

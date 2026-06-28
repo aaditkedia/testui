@@ -70,7 +70,7 @@ export default function Home() {
       <main className="mx-auto w-full max-w-[1240px] flex flex-col gap-14 px-6 py-16">
         <header className="flex flex-col gap-3 border-b pb-10" style={{ borderColor: "#1f1f1f" }}>
           <span className="text-xs font-mono uppercase tracking-[0.18em]" style={{ color: "#6b6b6b" }}>
-            Template Lab · {total} live demos
+            Kediora Studio · {total} live demos
           </span>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl" style={{ color: "#f5f5f5" }}>
             Landing Page Gallery
