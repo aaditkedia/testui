@@ -78,11 +78,18 @@ export default function GalleryCard({ id, name, label, summary, accent }: Galler
         </span>
       </div>
 
-      {/* Live preview thumbnail */}
+      {/* Live preview thumbnail. `contain: paint` + clipPath force the box to
+          clip composited descendants (the templates' WebGL canvases paint on
+          their own layer and otherwise escape overflow:hidden on iOS Safari). */}
       <div
         ref={thumbRef}
         className="relative w-full overflow-hidden"
-        style={{ aspectRatio: `${DESIGN_WIDTH} / ${DESIGN_HEIGHT}`, background: "#0a0a0a" }}
+        style={{
+          aspectRatio: `${DESIGN_WIDTH} / ${DESIGN_HEIGHT}`,
+          background: "#0a0a0a",
+          contain: "paint",
+          clipPath: "inset(0)",
+        }}
       >
         {/* Accent poster shown until the iframe paints (and whenever unmounted) */}
         <div
@@ -98,22 +105,34 @@ export default function GalleryCard({ id, name, label, summary, accent }: Galler
         </div>
 
         {mounted && (
-          <iframe
-            src={asset(`/p/${id}/`)}
-            title={`${name} preview`}
-            aria-hidden
-            tabIndex={-1}
-            onLoad={() => setLoaded(true)}
+          // Fixed-size scaler box: the transform lives here (not on the iframe)
+          // so the iframe keeps a clean DESIGN_WIDTH×DESIGN_HEIGHT layout box and
+          // the wrapper's overflow:hidden clips the iframe's own scrollbar on
+          // mobile, where iframes ignore the height attr and auto-expand.
+          <div
+            className="absolute left-0 top-0 overflow-hidden"
             style={{
               width: DESIGN_WIDTH,
               height: DESIGN_HEIGHT,
-              border: 0,
-              overflow: "hidden",
               transform: `scale(${scale})`,
               transformOrigin: "top left",
               pointerEvents: "none",
             }}
-          />
+          >
+            <iframe
+              src={asset(`/p/${id}/`)}
+              title={`${name} preview`}
+              aria-hidden
+              tabIndex={-1}
+              onLoad={() => setLoaded(true)}
+              style={{
+                display: "block",
+                width: DESIGN_WIDTH,
+                height: DESIGN_HEIGHT,
+                border: 0,
+              }}
+            />
+          </div>
         )}
 
         {/* Hover overlay CTA (above the stretched link) */}

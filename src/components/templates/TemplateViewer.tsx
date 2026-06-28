@@ -140,6 +140,9 @@ export default function TemplateViewer({
   if (preview) {
     return (
       <div className="relative" style={{ pointerEvents: "none" }} aria-hidden>
+        {/* Hide the scrollbar inside the iframe so the scaled thumbnail reads
+            as a clean poster (the embed is non-interactive anyway). */}
+        <style>{`html{scrollbar-width:none}html::-webkit-scrollbar{display:none}`}</style>
         {template}
       </div>
     );
