@@ -18,7 +18,7 @@ export type RestaurantTemplateData = {
   id: string;
   name: string;
   shortName: string;
-  // Generic naming for the template gallery sidebar (so prospects see the
+  // Generic naming for the template gallery cards (so prospects see the
   // *layout style*, not the original client). The site header still uses
   // `shortName` so the demo content reads naturally inside the preview.
   genericName?: string;
@@ -32,6 +32,7 @@ export type RestaurantTemplateData = {
     bg: string;
     surface: string;
     surfaceAlt: string;
+    surfaceAltText: string;
     text: string;
     textInverse: string;
     muted: string;
@@ -119,9 +120,10 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
       buildPlan: "WESTSIDE-GRILL-BUILD-PLAN.md",
     },
     theme: {
-      bg: "#150F0D",
-      surface: "#F7F0E4",
+      bg: "#F6EFE3",
+      surface: "#FFFDF7",
       surfaceAlt: "#241814",
+      surfaceAltText: "#FFF3E4",
       text: "#1B120F",
       textInverse: "#FFF3E4",
       muted: "#76675A",
@@ -204,9 +206,10 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
       buildPlan: "THE-SHELBY-BUILD-PLAN.md",
     },
     theme: {
-      bg: "#11100E",
-      surface: "#F8F2E8",
+      bg: "#F8F2E8",
+      surface: "#FFFDF6",
       surfaceAlt: "#EFE4D3",
+      surfaceAltText: "#191511",
       text: "#191511",
       textInverse: "#FFF7EC",
       muted: "#6F6254",
@@ -289,6 +292,7 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
       bg: "#FFF8EC",
       surface: "#FFFFFF",
       surfaceAlt: "#F4E5C6",
+      surfaceAltText: "#1C2418",
       text: "#1C2418",
       textInverse: "#FFFDF7",
       muted: "#65705C",
@@ -372,6 +376,7 @@ export const restaurantTemplates: RestaurantTemplateData[] = [
       bg: "#FFF7EA",
       surface: "#FFFFFF",
       surfaceAlt: "#F2E2C3",
+      surfaceAltText: "#2A2018",
       text: "#2A2018",
       textInverse: "#FFF9EF",
       muted: "#765F4A",

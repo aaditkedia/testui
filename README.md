@@ -1,6 +1,6 @@
 # Template Lab — landing-page gallery
 
-A Next.js 15 static-export gallery of reusable landing-page templates. Pitch-ready: every entry on the sidebar is a layout I can re-skin for a freelance client.
+A Next.js 15 static-export gallery of reusable landing-page templates. Pitch-ready: every card in the live-preview showcase grid is a layout I can re-skin for a freelance client.
 
 See **[CONTEXT.md](./CONTEXT.md)** for the full repo guide. Quick reference below.
 
@@ -35,9 +35,9 @@ docs/
   build-plans/      engineering plans per template
   specs/            original spec sheets per template
 src/
-  app/              page.tsx, layout, globals.css, icon.svg
+  app/              page.tsx (gallery index), t/[slug]/ (template routes), p/[slug]/ (iframe previews), layout, globals.css
   components/
-    templates/      TemplateBrowser, PravahTemplate, RestaurantTemplate
+    templates/      GalleryCard, TemplateViewer, PravahTemplate, RestaurantTemplate
     ambassador/     ConceptA/B/C and the bespoke sites (corn/helios/ngpes/berco/main)
     sections/       Pravah-template sections
     ui/             Nav, Button, ThemeToggle, etc.
@@ -49,7 +49,7 @@ public/             static images
 
 ## Re-skinning for a client
 
-1. Pick the closest template from the sidebar.
+1. Pick the closest template card from the gallery.
 2. Edit `src/config/template-gallery.ts` (or `content.config.ts` / `site.config.ts` for the Pravah-style one) with the client's copy, theme tokens, and photos.
 3. `npm run build` and ship `./out` to any static host.
 
