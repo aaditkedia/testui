@@ -89,7 +89,7 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
     return (
       <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] bg-[#241814] text-[#FFF3E4] shadow-2xl">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={HERO_PHOTOS.steakhouse} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={HERO_PHOTOS.steakhouse} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
         <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(15,9,8,.78)_10%,rgba(91,15,15,.55)_70%,rgba(200,164,106,.35)_120%)]" />
         <div className="absolute bottom-7 left-7 max-w-[70%] rounded-2xl border border-[#C8A46A]/40 bg-black/45 p-5 backdrop-blur-md">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8A46A]">Tonight</p>
@@ -105,10 +105,10 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
 
   if (visual === "shelby") {
     return (
-      <div className="relative grid h-full min-h-[420px] grid-cols-[1.05fr_.75fr] gap-4">
-        <div className="relative overflow-hidden rounded-[28px] bg-[#2A1D15]">
+      <div className="relative grid h-full min-h-[420px] grid-cols-1 gap-4 sm:grid-cols-[1.05fr_.75fr]">
+        <div className="relative min-h-[260px] overflow-hidden rounded-[28px] bg-[#2A1D15] sm:min-h-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={HERO_PHOTOS.shelby} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={HERO_PHOTOS.shelby} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
           <div className="absolute inset-0 bg-[linear-gradient(170deg,rgba(18,16,14,.55)_0%,rgba(75,42,25,.35)_60%,rgba(184,111,60,.3)_100%)]" />
           <div className="absolute bottom-7 left-7 right-7 rounded-3xl bg-[#F8F2E8]/96 p-5 text-[#191511]">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#6F6254]">Seasonal feature</p>
@@ -116,15 +116,17 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
           </div>
         </div>
         <div className="grid gap-4">
-          <div className="overflow-hidden rounded-[24px] bg-[#EFE4D3]">
+          <div className="min-h-[160px] overflow-hidden rounded-[24px] bg-[#EFE4D3]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=70&auto=format&fit=crop"
               alt=""
               className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
-          <div className="flex flex-col justify-center rounded-[24px] bg-[#11100E] p-5 text-[#FFF7EC]">
+          <div className="flex min-h-[160px] flex-col justify-center rounded-[24px] bg-[#11100E] p-5 text-[#FFF7EC]">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9B78F]">Reserve</p>
             <p className="mt-3 text-2xl font-semibold">Resy + Toast</p>
             <p className="mt-1 text-xs text-[#FFF7EC]/70">Reservation and pickup paths live side by side.</p>
@@ -138,7 +140,7 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
     return (
       <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] border-2 border-[#2A2018] bg-[#F2E2C3]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={HERO_PHOTOS.sandwich} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={HERO_PHOTOS.sandwich} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
         <div className="absolute inset-0 bg-[linear-gradient(165deg,rgba(242,184,75,.18)_0%,rgba(214,69,47,.12)_55%,rgba(75,127,56,.22)_100%)]" />
         <div className="absolute -left-4 top-7 rotate-[-3deg] rounded-xl bg-white px-4 py-2 text-sm font-bold text-[#D6452F] shadow-lg">
           Best Seller
@@ -155,9 +157,9 @@ function FoodVisual({ visual }: { visual: RestaurantVisual }) {
   return (
     <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] bg-[#F4E5C6]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={HERO_PHOTOS.mediterranean} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={HERO_PHOTOS.mediterranean} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
       <div className="absolute inset-0 bg-[linear-gradient(165deg,rgba(255,248,236,.35)_0%,rgba(224,167,34,.22)_55%,rgba(47,125,50,.25)_100%)]" />
-      <div className="absolute bottom-7 right-7 max-w-[280px] rounded-3xl bg-white/95 p-5 shadow-xl backdrop-blur">
+      <div className="absolute bottom-7 right-7 max-w-[280px] rounded-[28px] bg-white/95 p-5 shadow-xl backdrop-blur">
         <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#65705C]">Fresh favorite</p>
         <p className="mt-2 text-xl font-bold leading-snug text-[#1C2418]">Bowls, wraps, hummus, baklava.</p>
       </div>
@@ -173,6 +175,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
     "--rt-bg": data.theme.bg,
     "--rt-surface": data.theme.surface,
     "--rt-surface-alt": data.theme.surfaceAlt,
+    "--rt-surface-alt-text": data.theme.surfaceAltText,
     "--rt-text": data.theme.text,
     "--rt-inverse": data.theme.textInverse,
     "--rt-muted": data.theme.muted,
@@ -186,7 +189,9 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
 
   return (
     <main style={vars} className="min-h-screen bg-[var(--rt-bg)] text-[var(--rt-text)]">
-      <header className="sticky top-0 z-30 border-b border-[var(--rt-line)] bg-[var(--rt-bg)]/88 backdrop-blur-xl">
+      <header
+        className="sticky top-0 z-30 border-b border-[var(--rt-line)] bg-[var(--rt-bg)]"
+      >
         <nav className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-4 sm:px-8">
           <a href="#template-hero" className="text-base font-black uppercase">
             {data.shortName}
@@ -205,7 +210,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
       <section id="template-hero" className="mx-auto grid max-w-[1280px] items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[.95fr_1.05fr] lg:py-24">
         <motion.div {...reveal}>
           <p className="text-xs font-bold uppercase text-[var(--rt-accent)]">{data.hero.eyebrow}</p>
-          <h1 className={`${headingClass} mt-5 max-w-4xl text-5xl font-semibold leading-[1.03] sm:text-6xl lg:text-7xl`}>
+          <h1 className={`${headingClass} mt-5 max-w-4xl text-4xl font-semibold leading-[1.03] sm:text-5xl lg:text-6xl`}>
             {data.hero.title}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--rt-muted)] sm:text-lg">{data.hero.subtitle}</p>
@@ -255,7 +260,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
               <motion.article
                 key={item.name}
                 {...reveal}
-                className="group overflow-hidden rounded-[26px] border border-[var(--rt-line)] bg-[var(--rt-bg)]"
+                className="group overflow-hidden rounded-[24px] border border-[var(--rt-line)] bg-[var(--rt-bg)]"
               >
                 <div className="relative h-44 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -263,12 +268,14 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
                     src={featuredPhoto(data.hero.visual, i)}
                     alt=""
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,.35))]" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-[var(--rt-surface)] px-3 py-1 text-xs font-bold text-[var(--rt-accent)]">
+                    <span className="rounded-full border border-[var(--rt-line)] px-3 py-1 text-xs font-bold text-[var(--rt-accent)]">
                       {item.tag}
                     </span>
                     {item.price && <span className="text-sm font-bold text-[var(--rt-muted)]">{item.price}</span>}
@@ -297,7 +304,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
               <h3 className="text-xl font-bold">{category.name}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {category.items.map((item) => (
-                  <span key={item} className="rounded-full bg-[var(--rt-bg)] px-3 py-2 text-sm text-[var(--rt-muted)]">
+                  <span key={item} className="rounded-full border border-[var(--rt-line)] bg-[var(--rt-bg)] px-3 py-2 text-sm text-[var(--rt-muted)]">
                     {item}
                   </span>
                 ))}
@@ -307,11 +314,11 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
         </div>
       </section>
 
-      <section id="template-spotlight" className="bg-[var(--rt-surface-alt)] py-16 text-[var(--rt-text)] lg:py-24">
+      <section id="template-spotlight" className="bg-[var(--rt-surface-alt)] py-16 text-[var(--rt-surface-alt-text)] lg:py-24">
         <div className="mx-auto grid max-w-[1280px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr]">
           <motion.div {...reveal} className="rounded-[28px] bg-[var(--rt-surface)] p-7">
-            <p className="text-xs font-bold uppercase text-[var(--rt-accent)]">{data.spotlight.eyebrow}</p>
-            <h2 className={`${headingClass} mt-3 text-4xl font-semibold leading-tight sm:text-5xl`}>{data.spotlight.title}</h2>
+            <p className="text-xs font-bold uppercase text-[var(--rt-accent-2)]">{data.spotlight.eyebrow}</p>
+            <h2 className={`${headingClass} mt-3 text-4xl font-semibold leading-tight text-[var(--rt-text)] sm:text-5xl`}>{data.spotlight.title}</h2>
             <p className="mt-5 text-base leading-8 text-[var(--rt-muted)]">{data.spotlight.body}</p>
           </motion.div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -319,7 +326,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
               <motion.div
                 key={point}
                 {...reveal}
-                className="rounded-[22px] border border-[var(--rt-line)] bg-[var(--rt-surface)] p-5 text-lg font-bold"
+                className="rounded-[24px] border border-[var(--rt-line)] bg-[var(--rt-surface)] p-5 text-lg font-bold text-[var(--rt-text)]"
               >
                 {point}
               </motion.div>
@@ -361,7 +368,7 @@ export default function RestaurantTemplate({ data }: { data: RestaurantTemplateD
             {data.location.email && <p className="text-sm leading-7 text-[var(--rt-muted)]">{data.location.email}</p>}
           </div>
           <div>
-            <h3 className="text-sm font-bold uppercase text-[var(--rt-accent)]">Hours seed</h3>
+            <h3 className="text-sm font-bold uppercase text-[var(--rt-accent)]">Hours</h3>
             <ul className="mt-3 space-y-1 text-sm leading-7 text-[var(--rt-muted)]">
               {data.location.hours.map((line) => (
                 <li key={line}>{line}</li>
