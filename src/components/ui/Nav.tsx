@@ -27,8 +27,15 @@ export default function Nav() {
     };
   }, [open]);
 
-  // The template gallery and legacy showcase provide their own chrome.
-  if (pathname === "/" || pathname?.startsWith("/ambassador")) return null;
+  // The template gallery, template viewer/preview routes, and legacy showcase
+  // provide their own chrome (or are bare iframe embeds).
+  if (
+    pathname === "/" ||
+    pathname?.startsWith("/ambassador") ||
+    pathname?.startsWith("/t/") ||
+    pathname?.startsWith("/p/")
+  )
+    return null;
 
   return (
     <header
