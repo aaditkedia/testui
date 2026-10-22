@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
+import { ViewportCanvas, maxDpr } from "../webgl/perf";
 
 const ORANGE = "#FF4D1F";
 
@@ -28,9 +29,9 @@ function GlobeObject() {
 
 export function HeroGlobeScene() {
   return (
-    <Canvas
+    <ViewportCanvas
       camera={{ position: [0, 0, 6], fov: 42 }}
-      dpr={[1, 1.6]}
+      dpr={[1, maxDpr(1.6)]}
       gl={{ alpha: true, antialias: true }}
       style={{ width: "100%", height: "100%" }}
     >
@@ -39,7 +40,7 @@ export function HeroGlobeScene() {
       <directionalLight position={[-5, -2, 2]} intensity={1.1} color="#ffd9c9" />
       <pointLight position={[2, -4, 4]} intensity={1.4} color={ORANGE} />
       <GlobeObject />
-    </Canvas>
+    </ViewportCanvas>
   );
 }
 
@@ -137,9 +138,9 @@ function ParisContent() {
 
 export function ParisScene() {
   return (
-    <Canvas
+    <ViewportCanvas
       camera={{ position: [0, 0.3, 6.5], fov: 40 }}
-      dpr={[1, 1.5]}
+      dpr={[1, maxDpr(1.5)]}
       gl={{ alpha: true, antialias: true }}
       style={{ width: "100%", height: "100%" }}
     >
@@ -147,6 +148,6 @@ export function ParisScene() {
       <directionalLight position={[3, 5, 4]} intensity={1.6} />
       <pointLight position={[-3, 1, 3]} intensity={1.2} color={ORANGE} />
       <ParisContent />
-    </Canvas>
+    </ViewportCanvas>
   );
 }

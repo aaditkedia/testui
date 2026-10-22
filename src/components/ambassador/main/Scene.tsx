@@ -14,6 +14,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import type { MainTheme } from "./theme";
+import { maxDpr } from "../webgl/perf";
 
 export const NUM_ACTS = 6;
 
@@ -283,7 +284,7 @@ export default function Scene({ progress, theme }: { progress: ProgressRef; them
       camera={{ position: [0, 0, 5], fov: 35 }}
       // Capped at 1.25 (was 1.5). Almost imperceptible on HiDPI screens but
       // pixel-shaded transmission materials are O(pixels), so this matters.
-      dpr={[1, 1.25]}
+      dpr={[1, maxDpr(1.25)]}
       gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
       style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }}
     >

@@ -5,8 +5,12 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { clamp01 } from "../webgl/helpers";
+import { maxDpr } from "../webgl/perf";
 
 const N = 3200;
+// Each frame closes 4.5% of the gap to the target shape, so after this many
+// frames the points sit within 0.01% of it and the CPU morph can stop.
+const SETTLE_FRAMES = 200;
 type Ref = MutableRefObject<number>;
 
 function starfield() {
@@ -76,11 +80,17 @@ function Particles({ progress }: { progress: Ref }) {
   }, []);
 
   const mouse = useRef(new THREE.Vector3(999, 999, 0));
+  const lastStage = useRef(-1);
+  const settleFrames = useRef(0);
   useFrame((state, dt) => {
     if (!pts.current) return;
     const p = progress.current;
     const stage = p < 0.18 ? 0 : p < 0.4 ? 1 : p < 0.62 ? 2 : p < 0.82 ? 3 : 4;
     const target = shapes[stage];
+    if (stage !== lastStage.current) {
+      lastStage.current = stage;
+      settleFrames.current = 0;
+    }
 
     // mouse to world at z=0
     const fov = ((camera as THREE.PerspectiveCamera).fov * Math.PI) / 180;
@@ -89,9 +99,18 @@ function Particles({ progress }: { progress: Ref }) {
     const halfW = halfH * (state.size.width / state.size.height);
     mouse.current.set(state.pointer.x * halfW, state.pointer.y * halfH, 0);
 
+    // rotation: galaxy + globe spin
+    const spin = stage === 1 ? 0.18 : stage === 2 ? 0.08 : 0.02;
+    pts.current.rotation.y += dt * spin;
+
+    // Skip the per-point morph + buffer upload once the shape has settled.
+    // The globe stage keeps running because the cursor keeps displacing points.
+    const showGlobe = stage === 2;
+    if (!showGlobe && settleFrames.current >= SETTLE_FRAMES) return;
+    settleFrames.current++;
+
     const arr = (pts.current.geometry.getAttribute("position") as THREE.BufferAttribute).array as Float32Array;
     const speed = 0.045;
-    const showGlobe = stage === 2;
     for (let i = 0; i < N; i++) {
       const i3 = i * 3;
       arr[i3] += (target[i3] - arr[i3]) * speed;
@@ -107,9 +126,6 @@ function Particles({ progress }: { progress: Ref }) {
       }
     }
     pts.current.geometry.getAttribute("position").needsUpdate = true;
-    // rotation: galaxy + globe spin
-    const spin = stage === 1 ? 0.18 : stage === 2 ? 0.08 : 0.02;
-    pts.current.rotation.y += dt * spin;
   });
 
   return (
@@ -143,14 +159,15 @@ export default function HeliosScene({ progress }: { progress: Ref }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 45 }}
-      dpr={[1, 1.5]}
-      gl={{ alpha: false, antialias: true }}
+      dpr={[1, maxDpr(1.5)]}
+      // Everything goes through the bloom composer, so canvas MSAA is never seen.
+      gl={{ alpha: false, antialias: false }}
       onCreated={({ gl }) => gl.setClearColor("#000000")}
       style={{ position: "fixed", inset: 0, zIndex: 0 }}
     >
       <Particles progress={progress} />
       <Core progress={progress} />
-      <EffectComposer>
+      <EffectComposer multisampling={0}>
         <Bloom intensity={0.9} luminanceThreshold={0.4} luminanceSmoothing={0.35} mipmapBlur />
       </EffectComposer>
     </Canvas>

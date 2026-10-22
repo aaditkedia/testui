@@ -5,6 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { localAct, visAct } from "../webgl/helpers";
+import { maxDpr } from "../webgl/perf";
 
 const NUM = 6;
 type Ref = MutableRefObject<number>;
@@ -165,8 +166,10 @@ export default function CornScene({ progress }: { progress: Ref }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5.5], fov: 38 }}
-      dpr={[1, 1.5]}
-      gl={{ alpha: true, antialias: true }}
+      dpr={[1, maxDpr(1.5)]}
+      // The composer renders into its own (multisampled) target, so default
+      // framebuffer MSAA would be paid for and never seen.
+      gl={{ alpha: true, antialias: false }}
       style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     >
       <ambientLight intensity={0.4} />
@@ -175,7 +178,7 @@ export default function CornScene({ progress }: { progress: Ref }) {
       <DNAHelix progress={progress} />
       <Scatter progress={progress} />
       <FieldMap progress={progress} />
-      <EffectComposer>
+      <EffectComposer multisampling={4}>
         <Bloom intensity={0.6} luminanceThreshold={0.62} luminanceSmoothing={0.3} mipmapBlur />
         <Vignette eskil={false} offset={0.3} darkness={0.75} />
       </EffectComposer>

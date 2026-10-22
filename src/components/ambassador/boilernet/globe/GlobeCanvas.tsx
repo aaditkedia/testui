@@ -12,6 +12,7 @@ import {
   latLonToVec3, createArcCurve, buildArcTube,
   ARC_PULSE_VERTEX, ARC_PULSE_FRAGMENT,
 } from "./globe-data";
+import { maxDpr } from "../../webgl/perf";
 
 interface Props {
   rotRef?: React.MutableRefObject<number>;
@@ -31,12 +32,14 @@ export default function GlobeCanvas({ rotRef }: Props) {
     );
     camera.position.z = 2.8;
 
+    // No canvas MSAA: the bloom composer renders into its own target and only
+    // a full-screen quad reaches the canvas, so it would never be seen.
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       alpha: true,
       powerPreference: "high-performance",
     });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(maxDpr(1.5));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setClearColor(0x000000, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;

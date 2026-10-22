@@ -7,7 +7,7 @@ const ACCENT = "#0EA5E9";
 const viewport = { once: true, margin: "-80px" } as const;
 
 const cardCls =
-  "rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)]";
+  "rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)]";
 
 function MeshBg() {
   return (

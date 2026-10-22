@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Float, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
+import { ViewportCanvas, maxDpr } from "../webgl/perf";
 
 const PINK = "#F4B0A3";
 const TEAL = "#52D4C8";
@@ -41,12 +42,12 @@ function Chip() {
 
 export function ChipScene() {
   return (
-    <Canvas camera={{ position: [0, 1.4, 5], fov: 40 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }} style={{ width: "100%", height: "100%" }}>
+    <ViewportCanvas camera={{ position: [0, 1.4, 5], fov: 40 }} dpr={[1, maxDpr(1.5)]} gl={{ alpha: true, antialias: true }} style={{ width: "100%", height: "100%" }}>
       <ambientLight intensity={0.45} />
       <directionalLight position={[4, 6, 5]} intensity={1.6} color="#fff5ec" />
       <pointLight position={[-2, 2, 3]} intensity={2.2} color={TEAL} />
       <Chip />
-    </Canvas>
+    </ViewportCanvas>
   );
 }
 
@@ -82,12 +83,12 @@ function CardStack() {
 
 export function CardStackScene() {
   return (
-    <Canvas camera={{ position: [0, 1.2, 5], fov: 42 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }} style={{ width: "100%", height: "100%" }}>
+    <ViewportCanvas camera={{ position: [0, 1.2, 5], fov: 42 }} dpr={[1, maxDpr(1.5)]} gl={{ alpha: true, antialias: true }} style={{ width: "100%", height: "100%" }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 6, 4]} intensity={1.8} color="#fff5ec" />
       <pointLight position={[-3, 1, 3]} intensity={1.6} color={TEAL} />
       <pointLight position={[2, 3, 2]} intensity={1.2} color={PINK} />
       <CardStack />
-    </Canvas>
+    </ViewportCanvas>
   );
 }

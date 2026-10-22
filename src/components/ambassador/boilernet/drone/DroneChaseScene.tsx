@@ -6,6 +6,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+import { maxDpr } from "../../webgl/perf";
 
 /*
   Cinematic FPV-drone-chases-locomotive scene — premium pass.
@@ -1307,8 +1308,10 @@ export default function DroneChaseScene() {
     const mountEl = mount;
 
     /* ── Renderer ── */
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // No canvas MSAA: the bloom composer renders into its own target and only
+    // a full-screen quad reaches the canvas, so it would never be seen.
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: "high-performance" });
+    renderer.setPixelRatio(maxDpr(1.5));
     renderer.setSize(mountEl.clientWidth, mountEl.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;

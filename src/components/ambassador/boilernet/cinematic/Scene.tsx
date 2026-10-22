@@ -17,6 +17,8 @@ import ProjectCard from "./ProjectCard";
 import CameraController from "./CameraController";
 import { CARDS } from "./cards-data";
 
+const CA_OFFSET = new Vector2(0.0014, 0.0018);
+
 export default function Scene() {
   const dofRef = useRef<{ focusDistance: number } | null>(null);
 
@@ -51,7 +53,7 @@ export default function Scene() {
           height={480}
         />
         <ChromaticAberration
-          offset={new Vector2(0.0014, 0.0018)}
+          offset={CA_OFFSET}
           radialModulation={true}
           modulationOffset={0.4}
           blendFunction={BlendFunction.NORMAL}

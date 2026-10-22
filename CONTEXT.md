@@ -57,7 +57,10 @@ Both are reference material — the gallery does not import them at runtime.
 ## Performance notes (read before touching 3D)
 
 - **Dark 3D** (`src/components/ambassador/main/Scene.tsx`) is the heaviest template. The chain that used to lag was `EffectComposer → Bloom → Vignette → Noise` running on transmission-material renders at DPR 1.5. I removed the EffectComposer entirely, dropped DPR cap to 1.25, cut the particle field from 1600 → 480, dropped sphere segments, and reduced `MeshTransmissionMaterial samples` to 1 / `resolution` to 64. The visual loss is mostly a softer emissive glow, which the CSS `radial-gradient` glow layer in `MainConcept.tsx` already approximates.
-- **Helios** + **Corn** still use `@react-three/postprocessing`. If those start to lag, repeat the same recipe (drop the composer, lower DPR, halve geometry detail).
+- **Helios**, **Corn** and **Cinematic 3D** still use `@react-three/postprocessing`; **Globe** and **Drone** use three's own `EffectComposer`. A composer renders into its own target, so canvas `antialias` is wasted there: keep it off and set MSAA on the composer (`multisampling`) if edges need it. If they start to lag, repeat the Dark 3D recipe (drop the composer, lower DPR, halve geometry detail).
+- **Shared WebGL helpers** live in `src/components/ambassador/webgl/perf.tsx`. Use `maxDpr(cap)` for every scene's pixel ratio (it also drops to 1x inside the gallery's iframe previews), and `ViewportCanvas` instead of `Canvas` for inline (non-fixed) canvases so they stop rendering while scrolled out of view (Berco, NGPES).
+- **Helios** stops its 3,200-point CPU morph once a shape has settled (except the cursor-reactive globe stage).
+- Dark 3D's glass materials re-render the scene every frame even while hidden; pausing them was tried and dropped because it changed how the glass cube looks.
 - **Lenis smooth scroll** respects `prefers-reduced-motion` automatically (see `src/lib/smooth-scroll.tsx`).
 
 ## Re-skinning for a real client (the freelance flow)

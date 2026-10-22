@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { gsap } from "gsap";
 import Scene from "./Scene";
+import { maxDpr } from "../../webgl/perf";
 import { useCinematicStore } from "./store";
 import { CARDS } from "./cards-data";
 
@@ -65,7 +66,9 @@ export default function CinematicSite() {
           <Canvas
             gl={{ antialias: false, powerPreference: "high-performance", alpha: false }}
             camera={{ position: [0, 0, 10], fov: 50, near: 0.1, far: 500 }}
-            dpr={[1, 2]}
+            // Six post passes (incl. depth of field) run per pixel; 2x dpr cost
+            // ~1.8x the fill of 1.5x for little visible gain.
+            dpr={[1, maxDpr(1.5)]}
           >
             <color attach="background" args={["#020205"]} />
             <fog attach="fog" args={["#020205", 25, 180]} />
