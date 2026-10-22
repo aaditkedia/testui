@@ -41,7 +41,7 @@ src/components/
     bercosite/                  Holding-company site
     main/                       Dark-3D + Warm-3D narrative scene
   sections/                   Pravah page sections
-  ui/                         Nav, Button, ThemeToggle, etc.
+  ui/                         Button, FloatingCard (used by the Pravah sections)
   viz/                        D3-driven viz used by Pravah
 ```
 

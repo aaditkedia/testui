@@ -1,5 +1,6 @@
 "use client";
 
+import "@/app/boilernet.css";
 import { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { gsap } from "gsap";

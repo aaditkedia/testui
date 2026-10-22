@@ -40,7 +40,7 @@ src/
     templates/      GalleryCard, TemplateViewer, PravahTemplate, RestaurantTemplate
     ambassador/     ConceptA/B/C and the bespoke sites (corn/helios/ngpes/berco/main)
     sections/       Pravah-template sections
-    ui/             Nav, Button, ThemeToggle, etc.
+    ui/             Button, FloatingCard (used by the Pravah sections)
     viz/            D3 visualizations used by the Pravah template
   config/           site.config, content.config, template-gallery, theme.tokens
   lib/              motion variants, Lenis smooth scroll, theme provider

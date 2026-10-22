@@ -1,5 +1,6 @@
 "use client";
 
+import "@/app/boilernet.css";
 import DroneChaseScene from "./DroneChaseScene";
 
 // Ported from BoilerNet's /boilerline route — a cinematic FPV drone-chase

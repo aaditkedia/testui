@@ -58,6 +58,8 @@ function PhotoBlock({
           <img
             src={asset(src)}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             onError={() => setShowImg(false)}
             className={`absolute inset-0 h-full w-full object-cover ${anim}`}
           />

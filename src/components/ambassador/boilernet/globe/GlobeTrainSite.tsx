@@ -1,5 +1,6 @@
 "use client";
 
+import "@/app/boilernet.css";
 import { memo, useRef, useState, type FormEvent } from "react";
 import GlobeCanvas from "./GlobeCanvas";
 import TrainGuide from "./TrainGuide";
