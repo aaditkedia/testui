@@ -53,10 +53,6 @@ const BercoSite = dynamic(
   () => import("@/components/ambassador/bercosite/BercoSite"),
   { ssr: false, loading: () => loadingFallback }
 );
-const CinematicSite = dynamic(
-  () => import("@/components/ambassador/boilernet/cinematic/CinematicSite"),
-  { ssr: false, loading: () => loadingFallback }
-);
 const GlobeTrainSite = dynamic(
   () => import("@/components/ambassador/boilernet/globe/GlobeTrainSite"),
   { ssr: false, loading: () => loadingFallback }
@@ -118,9 +114,6 @@ export default function TemplateViewer({
       break;
     case "berco":
       template = <BercoSite />;
-      break;
-    case "boiler-cinematic":
-      template = <CinematicSite />;
       break;
     case "boiler-globe":
       template = <GlobeTrainSite />;

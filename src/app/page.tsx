@@ -15,7 +15,6 @@ const ACCENT: Record<string, string> = {
   corn: "#94D82D",
   "dark-3d": "#845EF7",
   helios: "#22B8CF",
-  "boiler-cinematic": "#A855F7",
   "boiler-globe": "#FAB005",
   "boiler-drone": "#FF6B6B",
   pravah: "#20C997",
@@ -40,7 +39,6 @@ function categoryGroup(entry: TemplateEntry): string {
     entry.kind === "corn" ||
     entry.kind === "dark-3d" ||
     entry.kind === "helios" ||
-    entry.kind === "boiler-cinematic" ||
     entry.kind === "boiler-globe" ||
     entry.kind === "boiler-drone"
   )

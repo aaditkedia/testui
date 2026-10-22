@@ -10,7 +10,6 @@ export type ExistingTemplateKind =
   | "helios"
   | "ngpes"
   | "berco"
-  | "boiler-cinematic"
   | "boiler-globe"
   | "boiler-drone";
 
@@ -539,15 +538,6 @@ export const templateEntries: TemplateEntry[] = [
     spec: "berco-spec.md",
     buildPlan: "BERCO-BUILD-PLAN.md",
     kind: "berco",
-  },
-  {
-    id: "boiler-cinematic",
-    name: "Cinematic Portfolio Scene",
-    label: "Cinematic 3D",
-    category: "Experimental / 3D",
-    summary: "Full-screen R3F portfolio scene: a drifting particle nebula with clickable monoliths and a GSAP camera dolly into each project. Suits studios, creative portfolios, and launch reveals.",
-    status: "Existing",
-    kind: "boiler-cinematic",
   },
   {
     id: "boiler-globe",
